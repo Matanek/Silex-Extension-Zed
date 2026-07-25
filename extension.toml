@@ -4,7 +4,7 @@ version = "0.31.0"
 schema_version = 1
 authors = ["Matanek"]
 description = "Silex language support"
-repository = "https://github.com/Matanek/Silex"
+repository = "https://github.com/Matanek/Silex-Extension-Zed"
 languages = ["languages/silex"]
 snippets = ["snippets/silex.json"]
 
@@ -13,5 +13,5 @@ name = "Silex LSP"
 languages = ["Silex"]
 
 [grammars.silex]
-repository = "https://github.com/Matanek/Silex"
+repository = "https://github.com/Matanek/Silex-Extension-Zed"
 rev = "269d9bf446bf145de5049ec49e349e89c27d4467"

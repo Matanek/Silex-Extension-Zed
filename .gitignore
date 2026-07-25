@@ -1,3 +1,6 @@
 .cache/
+.dev/
 build/
+grammars/
 node_modules/
+target/
