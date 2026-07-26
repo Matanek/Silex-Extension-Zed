@@ -30,5 +30,6 @@ cargo build --target wasm32-wasip2
 
 The extension adapter only launches `silex lsp`. Editor-independent language
 behavior is implemented and tested in the main Silex repository. The current
-server provides diagnostics and completion for the executable language subset;
-it does not yet advertise the historical navigation and refactoring features.
+server provides diagnostics and context-prioritized completion for document,
+module and package symbols in the executable language subset; it does not yet
+advertise the historical navigation and refactoring features.
