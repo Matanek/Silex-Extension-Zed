@@ -147,6 +147,7 @@
 
 (string_literal) @string
 (escape_sequence) @string.escape
+(escaped_dollar) @string.escape
 (integer_literal) @number
 (float_literal) @number
 (boolean_literal) @boolean

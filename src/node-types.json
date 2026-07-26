@@ -2477,7 +2477,7 @@
     "named": true,
     "fields": {
       "argument": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -3027,6 +3027,22 @@
     }
   },
   {
+    "type": "string_interpolation",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "string_literal",
     "named": true,
     "fields": {},
@@ -3036,6 +3052,14 @@
       "types": [
         {
           "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "escaped_dollar",
+          "named": true
+        },
+        {
+          "type": "string_interpolation",
           "named": true
         }
       ]
@@ -3696,6 +3720,14 @@
     "named": false
   },
   {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "$(",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -3886,6 +3918,10 @@
   },
   {
     "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "escaped_dollar",
     "named": true
   },
   {

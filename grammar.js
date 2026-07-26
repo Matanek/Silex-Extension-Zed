@@ -486,6 +486,7 @@ module.exports = grammar({
         field("function", alias("print", $.identifier)),
         "(",
         field("argument", $.expression),
+        repeat(seq(",", field("argument", $.expression))),
         ")",
       ),
 
@@ -1150,7 +1151,27 @@ module.exports = grammar({
     parenthesized_expression: ($) => seq("(", $.expression, ")"),
 
     string_literal: ($) =>
-      seq('"', repeat(choice($.escape_sequence, /[^"\\\n\r]+/)), '"'),
+      seq(
+        '"',
+        repeat(
+          choice(
+            $.escape_sequence,
+            $.escaped_dollar,
+            $.string_interpolation,
+            $._string_content,
+            $._literal_dollar,
+          ),
+        ),
+        '"',
+      ),
+
+    string_interpolation: ($) => seq("$(", field("value", $.expression), ")"),
+
+    escaped_dollar: (_) => token.immediate("$$"),
+
+    _literal_dollar: (_) => token.immediate("$"),
+
+    _string_content: (_) => token.immediate(/[^"\\$\n\r]+/),
 
     escape_sequence: (_) =>
       token(choice(/\\["\\nrt0]/, /\\u\{[0-9a-fA-F]{1,6}\}/)),

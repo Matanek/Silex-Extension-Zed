@@ -1,0 +1,10 @@
+func main() {
+let value = 21
+let message = "Value: $(value * 2)"
+//            ^^^^^^^^ string
+//                    ^^ string
+//                      ^^^^^ variable
+//                            ^ operator
+//                              ^ number
+//                               ^^ string
+}

@@ -39,3 +39,48 @@ func main() {
               target: (member_expression
                 object: (identifier)
                 field: (identifier)))))))))
+
+==================================
+Interpolation and variadic print
+==================================
+
+func main() {
+    let value = 21
+    let message = "Value: $(value * 2), $value, ${value}, $$(value)"
+    print("Value: ", value, message)
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (parameter_list)
+    body: (block
+      (statement
+        (variable_declaration
+          name: (identifier)
+          initializer: (expression
+            (integer_literal))))
+      (statement
+        (variable_declaration
+          name: (identifier)
+          initializer: (expression
+            (string_literal
+              (string_interpolation
+                value: (expression
+                  (binary_expression
+                    left: (expression
+                      (identifier))
+                    right: (expression
+                      (integer_literal)))))
+              (escaped_dollar)))))
+      (statement
+        (print_statement
+          function: (identifier)
+          argument: (expression
+            (string_literal))
+          argument: (expression
+            (identifier))
+          argument: (expression
+            (identifier)))))))
