@@ -4,8 +4,8 @@ This repository contains the Zed extension for the Silex language. It owns the
 Tree-sitter grammar, Zed queries and snippets, and the small Rust adapter that
 starts the language server supplied by the `silex` command.
 
-The compiler, formatter, semantic analysis, and language-server implementation
-remain in the main [Silex repository](https://github.com/Matanek/Silex).
+The compiler, semantic analysis and language-server implementation remain in
+the main [Silex repository](https://github.com/Matanek/Silex).
 
 ## Requirements
 
@@ -29,4 +29,6 @@ cargo build --target wasm32-wasip2
 ```
 
 The extension adapter only launches `silex lsp`. Editor-independent language
-behavior is implemented and tested in the main Silex repository.
+behavior is implemented and tested in the main Silex repository. The current
+server provides diagnostics and completion for the executable language subset;
+it does not yet advertise the historical navigation and refactoring features.
