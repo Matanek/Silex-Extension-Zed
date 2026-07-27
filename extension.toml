@@ -1,12 +1,11 @@
 id = "silex"
 name = "Silex"
-version = "0.37.0"
+version = "0.38.0"
 schema_version = 1
 authors = ["Matanek"]
 description = "Silex language support"
 repository = "https://github.com/Matanek/Silex-Extension-Zed"
 languages = ["languages/silex"]
-snippets = ["snippets/silex.json"]
 
 [language_servers.silex]
 name = "Silex LSP"

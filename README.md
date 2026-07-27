@@ -1,7 +1,7 @@
 # Silex for Zed
 
 This repository contains the Zed extension for the Silex language. It owns the
-Tree-sitter grammar, Zed queries and snippets, and the small Rust adapter that
+Tree-sitter grammar, Zed queries, and the small Rust adapter that
 starts the language server supplied by the `silex` command.
 
 The compiler, semantic analysis and language-server implementation remain in
