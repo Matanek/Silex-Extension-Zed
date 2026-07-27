@@ -1345,6 +1345,78 @@
     }
   },
   {
+    "type": "foreign_function_declaration",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "field_initializer",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function",
+            "named": false
+          }
+        ]
+      },
+      "interop": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "C",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "signature": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_argument_list",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "function_definition",
     "named": true,
     "fields": {
@@ -2941,6 +3013,10 @@
           "named": true
         },
         {
+          "type": "foreign_function_declaration",
+          "named": true
+        },
+        {
           "type": "function_definition",
           "named": true
         },
@@ -3880,6 +3956,10 @@
     "named": false
   },
   {
+    "type": "C",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -3974,6 +4054,10 @@
   },
   {
     "type": "func",
+    "named": false
+  },
+  {
+    "type": "function",
     "named": false
   },
   {

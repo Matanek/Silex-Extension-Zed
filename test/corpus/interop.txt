@@ -1,0 +1,62 @@
+============================
+C foreign function binding
+============================
+
+use Interop.C
+use Interop.MacOS
+
+let write = C.function<func(int32, C.Pointer<uint8>, C.Size) C.SignedSize>(
+    library:MacOS.lib_system,
+    name:"write"
+)
+
+---
+
+(source_file
+  (use_declaration
+    (qualified_name
+      (identifier)
+      (identifier)))
+  (use_declaration
+    (qualified_name
+      (identifier)
+      (identifier)))
+  (foreign_function_declaration
+    (identifier)
+    (type_argument_list
+      (type
+        (function_type
+          (function_type_parameter
+            (type
+              (builtin_type)))
+          (function_type_parameter
+            (type
+              (named_type
+                (generic_type
+                  (type_identifier
+                    (identifier)
+                    (identifier))
+                  (type_argument_list
+                    (type
+                      (builtin_type)))))))
+          (function_type_parameter
+            (type
+              (named_type
+                (type_identifier
+                  (identifier)
+                  (identifier)))))
+          (type
+            (named_type
+              (type_identifier
+                (identifier)
+                (identifier)))))))
+    (field_initializer
+      (identifier)
+      (expression
+        (member_expression
+          (identifier)
+          (identifier))))
+    (field_initializer
+      (identifier)
+      (expression
+        (string_literal)))))

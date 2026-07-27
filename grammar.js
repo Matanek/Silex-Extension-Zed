@@ -39,11 +39,25 @@ module.exports = grammar({
           $.extension_definition,
           $.structure_definition,
           $.function_definition,
+          $.foreign_function_declaration,
           $.native_function_declaration,
           $.native_resource_declaration,
           $.public_declaration,
           $.internal_declaration,
         ),
+      ),
+
+    foreign_function_declaration: ($) =>
+      seq(
+        "let",
+        field("name", $.identifier),
+        "=",
+        field("interop", "C"),
+        ".",
+        field("function", "function"),
+        field("signature", $.type_argument_list),
+        field("arguments", seq("(", optional($._invocation_arguments), ")")),
+        choice(";", $._automatic_semicolon),
       ),
 
     use_declaration: ($) =>

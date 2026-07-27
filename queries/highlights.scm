@@ -70,6 +70,11 @@
 (function_definition
   name: (identifier) @function.definition)
 
+(foreign_function_declaration
+  name: (identifier) @function.definition
+  interop: "C" @type
+  function: "function" @function.call)
+
 (constructor_definition "init" @function.definition)
 (drop_definition "drop" @function.definition)
 
