@@ -3538,6 +3538,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "copy_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "move_expression"
         },
         {
@@ -5945,6 +5949,27 @@
           {
             "type": "STRING",
             "value": "try"
+          },
+          {
+            "type": "FIELD",
+            "name": "operand",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          }
+        ]
+      }
+    },
+    "copy_expression": {
+      "type": "PREC",
+      "value": 10,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "copy"
           },
           {
             "type": "FIELD",

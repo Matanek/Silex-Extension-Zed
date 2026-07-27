@@ -184,6 +184,7 @@
   "in"
   "return"
   "try"
+  "copy"
   "move"
   "deferred"
   "isolated"

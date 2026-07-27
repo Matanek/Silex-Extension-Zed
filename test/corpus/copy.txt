@@ -1,0 +1,60 @@
+======================
+Copy prefix precedence
+======================
+
+func duplicate(value:Graph) Graph {
+    return copy value
+}
+
+func main() {
+    var source = Graph()
+    var detached = copy source
+    inspect(copy detached)
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (named_type
+            (type_identifier)))))
+    (type
+      (named_type
+        (type_identifier)))
+    (block
+      (statement
+        (return_statement
+          (expression
+            (copy_expression
+              (expression
+                (identifier))))))))
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (invocation_expression
+              (identifier)))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (copy_expression
+              (expression
+                (identifier))))))
+      (statement
+        (expression_statement
+          (invocation_expression
+            (identifier)
+            (expression
+              (copy_expression
+                (expression
+                  (identifier))))))))))

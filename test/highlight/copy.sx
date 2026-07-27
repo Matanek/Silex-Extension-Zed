@@ -1,0 +1,11 @@
+func duplicate(value:Graph) Graph {
+    return copy value
+//  ^^^^^^ keyword
+//         ^^^^ keyword
+}
+
+func main() {
+    var source = Graph()
+    var detached = copy source
+//                 ^^^^ keyword
+}
