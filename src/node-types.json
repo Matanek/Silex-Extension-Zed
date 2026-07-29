@@ -120,7 +120,7 @@
       },
       "message": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "expression",
@@ -3045,6 +3045,10 @@
           "named": true
         },
         {
+          "type": "test_definition",
+          "named": true
+        },
+        {
           "type": "use_declaration",
           "named": true
         }
@@ -3353,6 +3357,36 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "test_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4170,6 +4204,10 @@
   },
   {
     "type": "super",
+    "named": false
+  },
+  {
+    "type": "test",
     "named": false
   },
   {

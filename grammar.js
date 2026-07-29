@@ -39,6 +39,7 @@ module.exports = grammar({
           $.extension_definition,
           $.structure_definition,
           $.function_definition,
+          $.test_definition,
           $.foreign_function_declaration,
           $.native_function_declaration,
           $.native_resource_declaration,
@@ -242,6 +243,15 @@ module.exports = grammar({
         $.parameter_list,
         optional(field("return_type", choice($.void_type, $.borrowed_return_type, $.type))),
         field("body", $.block),
+      ),
+
+    test_definition: ($) =>
+      seq(
+        "test",
+        optional(field("name", $.string_literal)),
+        "{",
+        repeat(choice($.function_definition, $.statement)),
+        "}",
       ),
 
     native_function_declaration: ($) =>
@@ -509,8 +519,7 @@ module.exports = grammar({
         field("function", alias("assert", $.identifier)),
         "(",
         field("condition", $.expression),
-        ",",
-        field("message", $.expression),
+        optional(seq(",", field("message", $.expression))),
         ")",
       ),
 

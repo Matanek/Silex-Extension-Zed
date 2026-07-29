@@ -203,6 +203,7 @@
   "override"
   "static"
   "func"
+  "test"
 ] @keyword
 
 [

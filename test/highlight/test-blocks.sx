@@ -1,0 +1,12 @@
+test "named" {
+// <- keyword
+    assert(true)
+}
+
+test {
+// <- keyword
+    assert(true)
+}
+
+func test() {}
+//   ^^^^ function.definition
