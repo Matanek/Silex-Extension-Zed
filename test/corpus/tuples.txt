@@ -1,0 +1,71 @@
+==================
+Named and positional tuples
+==================
+
+func size() (width:int, height:int) {
+    return (width:1280, height:720)
+}
+
+func sum(pair:(int, int)) int {
+    let (left, right) = pair
+    return left + right
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (parameter_list)
+    return_type: (type
+      (tuple_type
+        (named_tuple_type_element
+          name: (identifier)
+          type: (type
+            (builtin_type)))
+        (named_tuple_type_element
+          name: (identifier)
+          type: (type
+            (builtin_type)))))
+    body: (block
+      (statement
+        (return_statement
+          value: (expression
+            (tuple_expression
+              (named_tuple_element
+                name: (identifier)
+                value: (expression
+                  (integer_literal)))
+              (named_tuple_element
+                name: (identifier)
+                value: (expression
+                  (integer_literal)))))))))
+  (function_definition
+    name: (identifier)
+    (parameter_list
+      (parameter
+        name: (identifier)
+        type: (type
+          (tuple_type
+            element: (type
+              (builtin_type))
+            element: (type
+              (builtin_type))))))
+    return_type: (type
+      (builtin_type))
+    body: (block
+      (statement
+        (variable_declaration
+          bindings: (tuple_binding_pattern
+            binding: (identifier)
+            binding: (identifier))
+          initializer: (expression
+            (identifier))))
+      (statement
+        (return_statement
+          value: (expression
+            (binary_expression
+              left: (expression
+                (identifier))
+              right: (expression
+                (identifier)))))))))

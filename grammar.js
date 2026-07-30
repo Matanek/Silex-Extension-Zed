@@ -412,6 +412,17 @@ module.exports = grammar({
     reference_type: ($) =>
       seq(field("mode", choice("@", "&")), field("target", $.type)),
     grouped_type: ($) => seq("(", field("type", $.type), ")"),
+    tuple_type: ($) =>
+      seq(
+        "(",
+        choice(
+          seq($.named_tuple_type_element, ",", $.named_tuple_type_element, repeat(seq(",", $.named_tuple_type_element))),
+          seq(field("element", $.type), ",", field("element", $.type), repeat(seq(",", field("element", $.type)))),
+        ),
+        ")",
+      ),
+    named_tuple_type_element: ($) =>
+      seq(field("name", $.identifier), ":", field("type", $.type)),
     optional_type: ($) =>
       prec.left(
         seq(
@@ -438,7 +449,7 @@ module.exports = grammar({
           "]",
         ),
       ),
-    type: ($) => choice($.optional_type, $.array_type, $.view_type, $.grouped_type, $.function_type, $.builtin_type, $.named_type),
+    type: ($) => choice($.optional_type, $.array_type, $.view_type, $.tuple_type, $.grouped_type, $.function_type, $.builtin_type, $.named_type),
     parameter_list: ($) =>
       seq("(", optional(seq($.parameter, repeat(seq(",", $.parameter)))), ")"),
 
@@ -483,12 +494,20 @@ module.exports = grammar({
     variable_declaration: ($) =>
       seq(
         field("mutability", choice("let", "var")),
-        field("name", $.identifier),
         choice(
-          seq($.type_annotation, optional(seq("=", field("initializer", $.expression)))),
-          seq("=", field("initializer", $.expression)),
+          seq(
+            field("name", $.identifier),
+            choice(
+              seq($.type_annotation, optional(seq("=", field("initializer", $.expression)))),
+              seq("=", field("initializer", $.expression)),
+            ),
+          ),
+          seq(field("bindings", $.tuple_binding_pattern), "=", field("initializer", $.expression)),
         ),
       ),
+
+    tuple_binding_pattern: ($) =>
+      seq("(", field("binding", $.identifier), ",", field("binding", $.identifier), repeat(seq(",", field("binding", $.identifier))), ")"),
 
     type_annotation: ($) => seq(":", field("type", choice($.reference_type, $.type))),
 
@@ -638,6 +657,7 @@ module.exports = grammar({
         $.super_method_expression,
         $.cascade_expression,
         $.sequence_literal,
+        $.tuple_expression,
         $.member_expression,
         $.safe_member_expression,
         $.index_expression,
@@ -1176,6 +1196,19 @@ module.exports = grammar({
       ),
 
     parenthesized_expression: ($) => seq("(", $.expression, ")"),
+
+    tuple_expression: ($) =>
+      seq(
+        "(",
+        choice(
+          seq($.named_tuple_element, ",", $.named_tuple_element, repeat(seq(",", $.named_tuple_element))),
+          seq(field("element", $.expression), ",", field("element", $.expression), repeat(seq(",", field("element", $.expression)))),
+        ),
+        ")",
+      ),
+
+    named_tuple_element: ($) =>
+      seq(field("name", $.identifier), ":", field("value", $.expression)),
 
     string_literal: ($) =>
       seq(
