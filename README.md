@@ -30,6 +30,8 @@ cargo build --target wasm32-wasip2
 
 The extension adapter only launches `silex lsp`. Editor-independent language
 behavior is implemented and tested in the main Silex repository. The current
-server provides diagnostics and context-prioritized completion for document,
-module and package symbols in the executable language subset; it does not yet
+server provides diagnostics, context-prioritized completion for document,
+module and package symbols, and inline previews for direct `GFX.Color`
+expressions in the executable language subset. Zed renders those previews
+according to its `lsp_document_colors` setting. The server does not yet
 advertise the historical navigation and refactoring features.
