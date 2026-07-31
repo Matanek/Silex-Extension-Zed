@@ -172,6 +172,7 @@
   "use"
   "private"
   "internal"
+  "local"
   "public"
   "protected"
   "as"

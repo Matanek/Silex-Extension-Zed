@@ -55,6 +55,10 @@
           {
             "type": "SYMBOL",
             "name": "internal_declaration"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "local_declaration"
           }
         ]
       }
@@ -345,6 +349,44 @@
         }
       ]
     },
+    "local_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "local"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "enum_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "protocol_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "structure_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "native_function_declaration"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "native_resource_declaration"
+            }
+          ]
+        }
+      ]
+    },
     "protocol_definition": {
       "type": "SEQ",
       "members": [
@@ -521,6 +563,10 @@
                         {
                           "type": "STRING",
                           "value": "internal"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "local"
                         },
                         {
                           "type": "STRING",
@@ -938,6 +984,10 @@
                             },
                             {
                               "type": "STRING",
+                              "value": "local"
+                            },
+                            {
+                              "type": "STRING",
                               "value": "protected"
                             },
                             {
@@ -977,6 +1027,10 @@
                             {
                               "type": "STRING",
                               "value": "internal"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "local"
                             },
                             {
                               "type": "STRING",
@@ -1035,6 +1089,10 @@
                             {
                               "type": "STRING",
                               "value": "internal"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "local"
                             },
                             {
                               "type": "STRING",
@@ -1097,6 +1155,10 @@
                             {
                               "type": "STRING",
                               "value": "internal"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "local"
                             },
                             {
                               "type": "STRING",

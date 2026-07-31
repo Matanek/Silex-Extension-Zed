@@ -51,12 +51,12 @@ func main() {
 Generic erased callback declarations
 ==================
 
-internal native func produce<T>(callback:isolated func() T) Operation
+local native func produce<T>(callback:isolated func() T) Operation
 
 ---
 
 (source_file
-  (internal_declaration
+  (local_declaration
     (native_function_declaration
       (identifier)
       (identifier)

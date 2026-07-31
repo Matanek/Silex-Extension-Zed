@@ -1246,6 +1246,10 @@
             "named": false
           },
           {
+            "type": "local",
+            "named": false
+          },
+          {
             "type": "public",
             "named": false
           }
@@ -1953,6 +1957,41 @@
       "types": [
         {
           "type": "parameter_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "local_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_definition",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "native_function_declaration",
+          "named": true
+        },
+        {
+          "type": "native_resource_declaration",
+          "named": true
+        },
+        {
+          "type": "protocol_definition",
+          "named": true
+        },
+        {
+          "type": "structure_definition",
           "named": true
         }
       ]
@@ -3081,6 +3120,10 @@
           "named": true
         },
         {
+          "type": "local_declaration",
+          "named": true
+        },
+        {
           "type": "native_function_declaration",
           "named": true
         },
@@ -3285,6 +3328,10 @@
         "types": [
           {
             "type": "internal",
+            "named": false
+          },
+          {
+            "type": "local",
             "named": false
           },
           {
@@ -4278,6 +4325,10 @@
   },
   {
     "type": "let",
+    "named": false
+  },
+  {
+    "type": "local",
     "named": false
   },
   {

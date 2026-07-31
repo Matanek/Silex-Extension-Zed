@@ -18,11 +18,13 @@ class Catalog {
     }
 }
 
-internal class Handle {
+local class Handle {
 // <- keyword
-    internal func join() {}
+    local func join() {}
 //  ^^^^^^^^ keyword
 }
+
+internal func package_helper() {}
 
 func inspect(value:Vec3) {
     Configuration(strict:true)

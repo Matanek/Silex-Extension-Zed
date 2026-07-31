@@ -45,6 +45,7 @@ module.exports = grammar({
           $.native_resource_declaration,
           $.public_declaration,
           $.internal_declaration,
+          $.local_declaration,
         ),
       ),
 
@@ -105,6 +106,19 @@ module.exports = grammar({
         ),
       ),
 
+    local_declaration: ($) =>
+      seq(
+        "local",
+        choice(
+          $.enum_definition,
+          $.protocol_definition,
+          $.structure_definition,
+          $.function_definition,
+          $.native_function_declaration,
+          $.native_resource_declaration,
+        ),
+      ),
+
     protocol_definition: ($) =>
       seq(
         "protocol",
@@ -137,7 +151,7 @@ module.exports = grammar({
         "{",
         repeat(
           seq(
-            optional(field("visibility", choice("internal", "public"))),
+            optional(field("visibility", choice("internal", "local", "public"))),
             optional(field("static", "static")),
             $.function_definition,
           ),
@@ -194,19 +208,19 @@ module.exports = grammar({
         repeat(
           choice(
             seq(
-              optional(field("visibility", choice("private", "internal", "protected", "public"))),
+              optional(field("visibility", choice("private", "internal", "local", "protected", "public"))),
               $.structure_definition,
             ),
             seq(
-              optional(field("visibility", choice("private", "internal", "protected", "public"))),
+              optional(field("visibility", choice("private", "internal", "local", "protected", "public"))),
               optional(field("static", "static")),
               $.structure_field,
             ),
-            seq(optional(field("visibility", choice("private", "internal", "protected", "public"))), $.constructor_definition),
+            seq(optional(field("visibility", choice("private", "internal", "local", "protected", "public"))), $.constructor_definition),
             $.drop_definition,
             seq(
               optional(field("override", "override")),
-              optional(field("visibility", choice("private", "internal", "protected", "public"))),
+              optional(field("visibility", choice("private", "internal", "local", "protected", "public"))),
               optional(field("static", "static")),
               $.function_definition,
             ),

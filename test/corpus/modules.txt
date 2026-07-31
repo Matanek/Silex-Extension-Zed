@@ -18,15 +18,17 @@ public func create() Window.Session {
     return Window.Session()
 }
 
-internal class Handle {
-  internal var state: int
+local class Handle {
+  local var state: int
   public init() {}
-  internal func join() {}
+  local func join() {}
 }
 
-internal func make_handle() Handle {
+local func make_handle() Handle {
   return Handle()
 }
+
+internal func package_helper() {}
 
 ---
 
@@ -84,7 +86,7 @@ internal func make_handle() Handle {
                 target: (member_expression
                   object: (identifier)
                   field: (identifier)))))))))
-  (internal_declaration
+  (local_declaration
     (structure_definition
       name: (identifier)
       (structure_field
@@ -98,7 +100,7 @@ internal func make_handle() Handle {
         name: (identifier)
         (parameter_list)
         body: (block))))
-  (internal_declaration
+  (local_declaration
     (function_definition
       name: (identifier)
       (parameter_list)
@@ -110,4 +112,9 @@ internal func make_handle() Handle {
           (return_statement
             value: (expression
               (invocation_expression
-                target: (identifier)))))))))
+                target: (identifier))))))))
+  (internal_declaration
+    (function_definition
+      name: (identifier)
+      (parameter_list)
+      body: (block))))
