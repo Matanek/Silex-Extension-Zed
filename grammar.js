@@ -815,7 +815,7 @@ module.exports = grammar({
           ".",
           field("method", $.identifier),
           "(",
-          optional(seq($.expression, repeat(seq(",", $.expression)))),
+          optional($._invocation_arguments),
           ")",
         ),
       ),
@@ -824,7 +824,7 @@ module.exports = grammar({
       seq(
         field("method", $.identifier),
         "(",
-        optional(seq($.expression, repeat(seq(",", $.expression)))),
+        optional($._invocation_arguments),
         ")",
       ),
 
@@ -1073,9 +1073,10 @@ module.exports = grammar({
       ),
 
     _invocation_arguments: ($) =>
-      choice(
-        seq($.expression, repeat(seq(",", $.expression))),
-        prec.dynamic(1, seq($.field_initializer, repeat(seq(",", $.field_initializer)), optional(","))),
+      seq(
+        choice($.expression, $.field_initializer),
+        repeat(seq(",", choice($.expression, $.field_initializer))),
+        optional(","),
       ),
 
     index_expression: ($) =>

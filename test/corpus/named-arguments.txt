@@ -1,0 +1,76 @@
+===============
+Named arguments
+===============
+
+func main() {
+    draw(sprite: hero, at: position)
+    draw(hero, opacity: 0.8, at: position)
+    Box(scale: 3, value: 4)
+    Box(value: 1)..update(right: 2, left: 3)
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (parameter_list)
+    body: (block
+      (statement
+        (expression_statement
+          (invocation_expression
+            target: (identifier)
+            (field_initializer
+              name: (identifier)
+              value: (expression
+                (identifier)))
+            (field_initializer
+              name: (identifier)
+              value: (expression
+                (identifier))))))
+      (statement
+        (expression_statement
+          (invocation_expression
+            target: (identifier)
+            (expression
+              (identifier))
+            (field_initializer
+              name: (identifier)
+              value: (expression
+                (float_literal)))
+            (field_initializer
+              name: (identifier)
+              value: (expression
+                (identifier))))))
+      (statement
+        (expression_statement
+          (invocation_expression
+            target: (identifier)
+            (field_initializer
+              name: (identifier)
+              value: (expression
+                (integer_literal)))
+            (field_initializer
+              name: (identifier)
+              value: (expression
+                (integer_literal))))))
+      (statement
+        (expression_statement
+          (cascade_expression
+            receiver: (invocation_expression
+              target: (identifier)
+              (field_initializer
+                name: (identifier)
+                value: (expression
+                  (integer_literal))))
+            (cascade_operation
+              (cascade_method_call
+                method: (identifier)
+                (field_initializer
+                  name: (identifier)
+                  value: (expression
+                    (integer_literal)))
+                (field_initializer
+                  name: (identifier)
+                  value: (expression
+                    (integer_literal)))))))))))
