@@ -431,12 +431,22 @@ module.exports = grammar({
         "(",
         choice(
           seq($.named_tuple_type_element, ",", $.named_tuple_type_element, repeat(seq(",", $.named_tuple_type_element))),
-          seq(field("element", $.type), ",", field("element", $.type), repeat(seq(",", field("element", $.type)))),
+          seq($._tuple_type_element, ",", $._tuple_type_element, repeat(seq(",", $._tuple_type_element))),
         ),
         ")",
       ),
+    _tuple_type_element: ($) =>
+      seq(
+        optional(field("access", choice("@", "&"))),
+        field("element", $.type),
+      ),
     named_tuple_type_element: ($) =>
-      seq(field("name", $.identifier), ":", field("type", $.type)),
+      seq(
+        field("name", $.identifier),
+        ":",
+        optional(field("access", choice("@", "&"))),
+        field("type", $.type),
+      ),
     optional_type: ($) =>
       prec.left(
         seq(
@@ -627,11 +637,18 @@ module.exports = grammar({
       ),
 
     _for_binding: ($) =>
-      seq(
-        optional(field("mutability", choice("let", "var"))),
-        field("name", $.identifier),
-        "in",
-        field("iterable", choice($.integer_range, $.expression)),
+      choice(
+        seq(
+          optional(field("mutability", choice("let", "var"))),
+          field("name", $.identifier),
+          "in",
+          field("iterable", choice($.integer_range, $.expression)),
+        ),
+        seq(
+          field("bindings", $.tuple_binding_pattern),
+          "in",
+          field("iterable", $.expression),
+        ),
       ),
 
     integer_range: ($) =>

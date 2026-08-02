@@ -96,6 +96,8 @@
 (function_type isolated: "isolated" @keyword)
 (function_type_parameter mutable_reference: "&" @type)
 (function_type_parameter read_reference: "@" @type)
+(tuple_type access: "@" @type)
+(named_tuple_type_element access: "@" @type)
 
 (native_function_declaration
   name: (identifier) @function.definition)

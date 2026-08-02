@@ -1302,6 +1302,16 @@
     "type": "for_statement",
     "named": true,
     "fields": {
+      "bindings": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "tuple_binding_pattern",
+            "named": true
+          }
+        ]
+      },
       "body": {
         "multiple": false,
         "required": true,
@@ -1342,7 +1352,7 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -2356,6 +2366,20 @@
     "type": "named_tuple_type_element",
     "named": true,
     "fields": {
+      "access": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "&",
+            "named": false
+          },
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -3554,6 +3578,20 @@
     "type": "tuple_type",
     "named": true,
     "fields": {
+      "access": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "&",
+            "named": false
+          },
+          {
+            "type": "@",
+            "named": false
+          }
+        ]
+      },
       "element": {
         "multiple": true,
         "required": false,

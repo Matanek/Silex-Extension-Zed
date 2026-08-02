@@ -69,3 +69,53 @@ func sum(pair:(int, int)) int {
                 (identifier))
               right: (expression
                 (identifier)))))))))
+
+==================
+ECS query access tuple and loop bindings
+==================
+
+func integrate(query:Query<(@Velocity, &Position)>) {
+    for (velocity, position) in query {
+        position.x += velocity.x
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (named_type
+            (generic_type
+              (type_identifier)
+              (type_argument_list
+                (type
+                  (tuple_type
+                    (type
+                      (named_type
+                        (type_identifier)))
+                    (type
+                      (named_type
+                        (type_identifier)))))))))))
+    (block
+      (statement
+        (for_statement
+          (tuple_binding_pattern
+            (identifier)
+            (identifier))
+          (expression
+            (identifier))
+          (block
+            (statement
+              (assignment_statement
+                (member_expression
+                  (identifier)
+                  (identifier))
+                (expression
+                  (member_expression
+                    (identifier)
+                    (identifier)))))))))))

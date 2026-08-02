@@ -69,3 +69,6 @@ func synchronize() {
         print("locked")
     }
 }
+
+func inspect_query(query:Query<(@Position, &Velocity)>) {}
+//                              ^ type
