@@ -144,6 +144,8 @@
   index: (identifier) @variable)
 (conditional_binding
   name: (identifier) @variable)
+(try_expression
+  binding: (identifier) @variable)
 
 [(break_statement) (continue_statement)] @keyword
 

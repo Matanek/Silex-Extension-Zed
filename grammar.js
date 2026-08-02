@@ -1214,7 +1214,28 @@ module.exports = grammar({
       prec(PREC.unary, seq(field("operator", choice("!", "-")), field("operand", $.expression))),
 
     try_expression: ($) =>
-      prec(PREC.unary, seq("try", field("operand", $.expression))),
+      prec.right(
+        PREC.unary,
+        seq(
+          "try",
+          field("operand", $.expression),
+          optional(
+            seq(
+              "else",
+              choice(
+                field("alternative", $.block),
+                seq(
+                  field("binding", alias("error", $.identifier)),
+                  choice(
+                    field("alternative", $.block),
+                    field("message", $.expression),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
 
     copy_expression: ($) =>
       prec(PREC.unary, seq("copy", field("operand", $.expression))),

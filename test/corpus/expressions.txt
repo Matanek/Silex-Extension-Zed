@@ -738,6 +738,109 @@ func main() {
               (identifier)
               (identifier))))))))
 
+============================
+Try failure alternatives
+============================
+
+func load(path:str) Result<int,str> {
+    let first = try read(path) else {
+        return Result<int,str>.failure("ignored")
+    }
+    let second = try read(path) else error {
+        return Result<int,str>.failure(error)
+    }
+    return try read(path) else error "cannot read: $(path)"
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (builtin_type))))
+    (type
+      (named_type
+        (generic_type
+          (type_identifier)
+          (type_argument_list
+            (type
+              (builtin_type))
+            (type
+              (builtin_type))))))
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (try_expression
+              (expression
+                (invocation_expression
+                  (identifier)
+                  (expression
+                    (identifier))))
+              (block
+                (statement
+                  (return_statement
+                    (expression
+                      (invocation_expression
+                        (member_expression
+                          (generic_type
+                            (type_identifier)
+                            (type_argument_list
+                              (type
+                                (builtin_type))
+                              (type
+                                (builtin_type))))
+                          (identifier))
+                        (expression
+                          (string_literal)))))))))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (try_expression
+              (expression
+                (invocation_expression
+                  (identifier)
+                  (expression
+                    (identifier))))
+              (identifier)
+              (block
+                (statement
+                  (return_statement
+                    (expression
+                      (invocation_expression
+                        (member_expression
+                          (generic_type
+                            (type_identifier)
+                            (type_argument_list
+                              (type
+                                (builtin_type))
+                              (type
+                                (builtin_type))))
+                          (identifier))
+                        (expression
+                          (identifier)))))))))))
+      (statement
+        (return_statement
+          (expression
+            (try_expression
+              (expression
+                (invocation_expression
+                  (identifier)
+                  (expression
+                    (identifier))))
+              (identifier)
+              (expression
+                (string_literal
+                  (string_interpolation
+                    (expression
+                      (identifier))))))))))))
+
 =============================
 Struct methods and self
 =============================

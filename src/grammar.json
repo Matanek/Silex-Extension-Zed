@@ -6524,7 +6524,7 @@
       }
     },
     "try_expression": {
-      "type": "PREC",
+      "type": "PREC_RIGHT",
       "value": 10,
       "content": {
         "type": "SEQ",
@@ -6540,6 +6540,75 @@
               "type": "SYMBOL",
               "name": "expression"
             }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "else"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "FIELD",
+                        "name": "alternative",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "block"
+                        }
+                      },
+                      {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "FIELD",
+                            "name": "binding",
+                            "content": {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "STRING",
+                                "value": "error"
+                              },
+                              "named": true,
+                              "value": "identifier"
+                            }
+                          },
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "FIELD",
+                                "name": "alternative",
+                                "content": {
+                                  "type": "SYMBOL",
+                                  "name": "block"
+                                }
+                              },
+                              {
+                                "type": "FIELD",
+                                "name": "message",
+                                "content": {
+                                  "type": "SYMBOL",
+                                  "name": "expression"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }
