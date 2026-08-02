@@ -639,6 +639,14 @@ module.exports = grammar({
     _for_binding: ($) =>
       choice(
         seq(
+          field("index", $.identifier),
+          ",",
+          optional(field("mutability", choice("let", "var"))),
+          field("name", $.identifier),
+          "in",
+          field("iterable", $.expression),
+        ),
+        seq(
           optional(field("mutability", choice("let", "var"))),
           field("name", $.identifier),
           "in",

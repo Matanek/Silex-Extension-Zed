@@ -140,6 +140,8 @@
 
 (for_statement
   name: (identifier) @variable)
+(for_statement
+  index: (identifier) @variable)
 (conditional_binding
   name: (identifier) @variable)
 

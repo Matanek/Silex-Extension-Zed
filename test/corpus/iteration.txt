@@ -117,6 +117,49 @@ func main() {
           (block))))))
 
 =============================
+Indexed collection iteration
+=============================
+
+func main() {
+    var values = [1]
+    for index, var item in values.indexed() {
+        print(index, item)
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (sequence_literal
+              (expression
+                (integer_literal))))))
+      (statement
+        (for_statement
+          (identifier)
+          (identifier)
+          (expression
+            (invocation_expression
+              (member_expression
+                (identifier)
+                (identifier))))
+          (block
+            (statement
+              (print_statement
+                (identifier)
+                (expression
+                  (identifier))
+                (expression
+                  (identifier))))))))))
+
+=============================
 Integer ranges and cascade source
 =============================
 
