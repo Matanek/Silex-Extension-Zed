@@ -1,0 +1,49 @@
+============================
+Intrinsic class declarations
+============================
+
+public intrinsic class Resources {
+    public func insert<T>(value:T)
+    public func has<T>() bool
+    public func get<T>() @T
+    public func clear()
+}
+
+---
+
+(source_file
+  (public_declaration
+    (structure_definition
+      name: (identifier)
+      (function_definition
+        name: (identifier)
+        type_parameters: (type_parameter_list
+          (type_parameter
+            name: (identifier)))
+        (parameter_list
+          (parameter
+            name: (identifier)
+            type: (type
+              (named_type
+                (type_identifier))))))
+      (function_definition
+        name: (identifier)
+        type_parameters: (type_parameter_list
+          (type_parameter
+            name: (identifier)))
+        (parameter_list)
+        return_type: (type
+          (builtin_type)))
+      (function_definition
+        name: (identifier)
+        type_parameters: (type_parameter_list
+          (type_parameter
+            name: (identifier)))
+        (parameter_list)
+        return_type: (borrowed_return_type
+          target: (type
+            (named_type
+              (type_identifier)))))
+      (function_definition
+        name: (identifier)
+        (parameter_list)))))

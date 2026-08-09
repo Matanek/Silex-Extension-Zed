@@ -864,10 +864,19 @@
                   "members": [
                     {
                       "type": "FIELD",
-                      "name": "static",
+                      "name": "class_modifier",
                       "content": {
-                        "type": "STRING",
-                        "value": "static"
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "static"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": "intrinsic"
+                          }
+                        ]
                       }
                     },
                     {
@@ -1423,12 +1432,30 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "body",
-          "content": {
-            "type": "SYMBOL",
-            "name": "block"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "body",
+              "content": {
+                "type": "SYMBOL",
+                "name": "block"
+              }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ";"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_automatic_semicolon"
+                }
+              ]
+            }
+          ]
         }
       ]
     },

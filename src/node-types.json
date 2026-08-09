@@ -1462,7 +1462,7 @@
     "fields": {
       "body": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "block",
@@ -3314,6 +3314,20 @@
     "type": "structure_definition",
     "named": true,
     "fields": {
+      "class_modifier": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "intrinsic",
+            "named": false
+          },
+          {
+            "type": "static",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -4411,6 +4425,10 @@
   },
   {
     "type": "internal",
+    "named": false
+  },
+  {
+    "type": "intrinsic",
     "named": false
   },
   {

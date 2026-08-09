@@ -192,7 +192,7 @@ module.exports = grammar({
 
     structure_definition: ($) =>
       seq(
-        choice("struct", seq(optional(field("static", "static")), "class")),
+        choice("struct", seq(optional(field("class_modifier", choice("static", "intrinsic"))), "class")),
         field("name", $.identifier),
         optional(field("type_parameters", $.type_parameter_list)),
         optional(
@@ -256,7 +256,7 @@ module.exports = grammar({
         optional(field("type_parameters", $.type_parameter_list)),
         $.parameter_list,
         optional(field("return_type", choice($.void_type, $.borrowed_return_type, $.type))),
-        field("body", $.block),
+        choice(field("body", $.block), choice(";", $._automatic_semicolon)),
       ),
 
     test_definition: ($) =>

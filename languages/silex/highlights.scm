@@ -209,6 +209,7 @@
   "super"
   "override"
   "static"
+  "intrinsic"
   "func"
   "test"
 ] @keyword
