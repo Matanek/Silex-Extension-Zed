@@ -609,6 +609,7 @@ func main() {
     var settings:Settings
     settings.count += 4
     settings.count *= 2
+    settings.count %= 3
     settings.count--
     settings.count++
     let zero:int
@@ -641,6 +642,13 @@ func main() {
             (type
               (named_type
                 (type_identifier))))))
+      (statement
+        (assignment_statement
+          (member_expression
+            (identifier)
+            (identifier))
+          (expression
+            (integer_literal))))
       (statement
         (assignment_statement
           (member_expression
