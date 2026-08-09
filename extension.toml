@@ -1,6 +1,6 @@
 id = "silex"
 name = "Silex"
-version = "0.45.0"
+version = "0.46.0"
 schema_version = 1
 authors = ["Matanek"]
 description = "Silex language support"
@@ -13,4 +13,4 @@ languages = ["Silex"]
 
 [grammars.silex]
 repository = "https://github.com/Matanek/Silex-Extension-Zed"
-rev = "efd7a682846f3e193e5fb40b005aeed1bbba37ff"
+rev = "c226131f6268a11ead5aaf1c9f92029e13b496b7"
