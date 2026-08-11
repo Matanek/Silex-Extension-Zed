@@ -9,7 +9,7 @@
     "silex",
     "tree-sitter"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0 WITH LLVM-exception",
   "tree-sitter": [
     {
       "scope": "source.silex",

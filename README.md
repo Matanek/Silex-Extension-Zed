@@ -36,3 +36,13 @@ sources, and inline previews for direct `GFX.Color` expressions in the
 executable language subset. Zed renders those previews according to its
 `lsp_document_colors` setting. References and refactoring features are not yet
 advertised.
+
+## License
+
+The Silex extension and grammar are licensed under the Apache License 2.0 with
+LLVM Exceptions (`Apache-2.0 WITH LLVM-exception`). See [LICENSE](LICENSE) and
+[NOTICE](NOTICE).
+
+Generated Tree-sitter support code and Rust dependencies remain subject to
+their respective terms listed in
+[Licenses/README.md](Licenses/README.md).

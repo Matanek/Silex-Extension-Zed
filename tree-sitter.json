@@ -12,11 +12,11 @@
   ],
   "metadata": {
     "version": "0.7.0",
-    "license": "MIT",
+    "license": "Apache-2.0 WITH LLVM-exception",
     "description": "Tree-sitter grammar for Silex",
     "authors": [
       {
-        "name": "NekMata"
+        "name": "Matanek"
       }
     ]
   },
