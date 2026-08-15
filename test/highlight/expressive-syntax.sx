@@ -1,0 +1,8 @@
+enum Token { value(int) }
+
+func classify(token:Token) int {
+    return match token {
+        value(_) => 1
+//            ^ variable.special
+    }
+}

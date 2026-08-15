@@ -1,0 +1,236 @@
+=============================
+Expressive language additions
+=============================
+
+enum Token { integer(int, int); end }
+struct Position { var x:int }
+struct Profile { var position:Position? }
+struct Cursor { func next() int? { return null } }
+struct Reader { func read() int { return 1 } }
+
+func main() {
+    var profile:Profile? = Profile(position:Position(x:0))
+    profile?.position?.x = 42
+    let required = profile!
+    let nested:Profile?? = profile
+    let selected = profile ?? Profile(position:null)
+    let reader = Reader()
+    let callback:func() int = reader.read
+    { let local = callback() }
+    for value in Cursor() { print(value) }
+    for scalar in "A🙂é" { print(scalar) }
+    let category = match Token.integer(1, 2) {
+        integer(value, _) if value > 0 => "positive"
+        integer(_, _) => "other"
+        else => "end"
+    }
+}
+
+---
+
+(source_file
+  (enum_definition
+    (identifier)
+    (enum_variant
+      (identifier)
+      (type
+        (builtin_type))
+      (type
+        (builtin_type)))
+    (enum_variant
+      (identifier)))
+  (structure_definition
+    (identifier)
+    (structure_field
+      (identifier)
+      (type
+        (builtin_type))))
+  (structure_definition
+    (identifier)
+    (structure_field
+      (identifier)
+      (type
+        (optional_type
+          (named_type
+            (type_identifier))))))
+  (structure_definition
+    (identifier)
+    (function_definition
+      (identifier)
+      (parameter_list)
+      (type
+        (optional_type
+          (builtin_type)))
+      (block
+        (statement
+          (return_statement
+            (expression
+              (null_literal)))))))
+  (structure_definition
+    (identifier)
+    (function_definition
+      (identifier)
+      (parameter_list)
+      (type
+        (builtin_type))
+      (block
+        (statement
+          (return_statement
+            (expression
+              (integer_literal)))))))
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (type_annotation
+            (type
+              (optional_type
+                (named_type
+                  (type_identifier)))))
+          (expression
+            (invocation_expression
+              (identifier)
+              (field_initializer
+                (identifier)
+                (expression
+                  (invocation_expression
+                    (identifier)
+                    (field_initializer
+                      (identifier)
+                      (expression
+                        (integer_literal))))))))))
+      (statement
+        (assignment_statement
+          (safe_member_expression
+            (safe_member_expression
+              (identifier)
+              (identifier))
+            (identifier))
+          (expression
+            (integer_literal))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (forced_optional_expression
+              (expression
+                (identifier))))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (type_annotation
+            (type
+              (optional_type
+                (optional_type
+                  (named_type
+                    (type_identifier))))))
+          (expression
+            (identifier))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (binary_expression
+              (expression
+                (identifier))
+              (expression
+                (invocation_expression
+                  (identifier)
+                  (field_initializer
+                    (identifier)
+                    (expression
+                      (null_literal)))))))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (invocation_expression
+              (identifier)))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (type_annotation
+            (type
+              (function_type
+                (type
+                  (builtin_type)))))
+          (expression
+            (member_expression
+              (identifier)
+              (identifier)))))
+      (statement
+        (anonymous_scope
+          (block
+            (statement
+              (variable_declaration
+                (identifier)
+                (expression
+                  (invocation_expression
+                    (identifier))))))))
+      (statement
+        (for_statement
+          (identifier)
+          (expression
+            (invocation_expression
+              (identifier)))
+          (block
+            (statement
+              (print_statement
+                (identifier)
+                (expression
+                  (identifier)))))))
+      (statement
+        (for_statement
+          (identifier)
+          (expression
+            (string_literal))
+          (block
+            (statement
+              (print_statement
+                (identifier)
+                (expression
+                  (identifier)))))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (match_expression
+              (expression
+                (invocation_expression
+                  (member_expression
+                    (identifier)
+                    (identifier))
+                  (expression
+                    (integer_literal))
+                  (expression
+                    (integer_literal))))
+              (match_branch
+                (identifier)
+                (match_binding_list
+                  (match_binding
+                    (identifier))
+                  (match_binding
+                    (ignored_match_binding)))
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (integer_literal))))
+                (expression
+                  (string_literal)))
+              (match_branch
+                (identifier)
+                (match_binding_list
+                  (match_binding
+                    (ignored_match_binding))
+                  (match_binding
+                    (ignored_match_binding)))
+                (expression
+                  (string_literal)))
+              (match_branch
+                (expression
+                  (string_literal))))))))))

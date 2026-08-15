@@ -31,6 +31,8 @@
 (match_binding
   name: (identifier) @variable)
 
+(ignored_match_binding) @variable.special
+
 (type_parameter
   name: (identifier) @type)
 

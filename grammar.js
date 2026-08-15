@@ -1,4 +1,5 @@
 const PREC = {
+  coalesce: 0,
   logicalOr: 1,
   logicalAnd: 2,
   equality: 3,
@@ -452,7 +453,7 @@ module.exports = grammar({
         seq(
           field(
             "contained",
-            choice($.builtin_type, $.named_type, $.function_type, $.grouped_type, $.array_type, $.view_type),
+            choice($.builtin_type, $.named_type, $.function_type, $.grouped_type, $.array_type, $.view_type, $.optional_type),
           ),
           "?",
         ),
@@ -511,6 +512,7 @@ module.exports = grammar({
         $.if_statement,
         $.while_statement,
         $.mutex_statement,
+        $.anonymous_scope,
         $.for_statement,
         $.match_expression,
       ),
@@ -537,14 +539,14 @@ module.exports = grammar({
 
     assignment_statement: ($) =>
       seq(
-        field("left", choice($.identifier, $.member_expression, $.index_expression)),
+        field("left", choice($.identifier, $.member_expression, $.safe_member_expression, $.index_expression)),
         field("operator", choice("=", "+=", "-=", "*=", "/=", "%=")),
         field("right", $.expression),
       ),
 
     update_statement: ($) =>
       seq(
-        field("argument", choice($.identifier, $.member_expression, $.index_expression)),
+        field("argument", choice($.identifier, $.member_expression, $.safe_member_expression, $.index_expression)),
         field("operator", choice("++", "--")),
       ),
 
@@ -618,6 +620,8 @@ module.exports = grammar({
 
     mutex_statement: ($) => seq("mutex", field("body", $.block)),
 
+    anonymous_scope: ($) => field("body", $.block),
+
     _condition_header: ($) =>
       choice($.expression, $.conditional_binding, seq("(", $.conditional_binding, ")")),
 
@@ -688,6 +692,7 @@ module.exports = grammar({
         $.move_expression,
         $.read_reference_expression,
         $.unary_expression,
+        $.forced_optional_expression,
         $.mutable_reference_expression,
         $.conversion_expression,
         $.lambda_expression,
@@ -729,6 +734,7 @@ module.exports = grammar({
           ),
           field("default", "else"),
         ),
+        optional(field("guard", seq("if", $.expression))),
         "=>",
         field(
           "body",
@@ -743,10 +749,15 @@ module.exports = grammar({
       seq("(", $.match_binding, repeat(seq(",", $.match_binding)), ")"),
 
     match_binding: ($) =>
-      seq(
-        optional(field("mutability", choice("let", "var"))),
-        field("name", $.identifier),
+      choice(
+        $.ignored_match_binding,
+        seq(
+          optional(field("mutability", choice("let", "var"))),
+          field("name", $.identifier),
+        ),
       ),
+
+    ignored_match_binding: (_) => "_",
 
     lambda_expression: ($) =>
       seq(
@@ -1137,6 +1148,14 @@ module.exports = grammar({
 
     binary_expression: ($) =>
       choice(
+        prec.right(
+          PREC.coalesce,
+          seq(
+            field("left", $.expression),
+            field("operator", "??"),
+            field("right", $.expression),
+          ),
+        ),
         prec.left(
           PREC.logicalOr,
           seq(
@@ -1213,6 +1232,9 @@ module.exports = grammar({
 
     unary_expression: ($) =>
       prec(PREC.unary, seq(field("operator", choice("!", "-")), field("operand", $.expression))),
+
+    forced_optional_expression: ($) =>
+      prec.left(PREC.member, seq(field("operand", $.expression), "!")),
 
     try_expression: ($) =>
       prec.right(

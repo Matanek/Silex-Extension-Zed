@@ -38,6 +38,22 @@
     }
   },
   {
+    "type": "anonymous_scope",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "argument_list",
     "named": true,
     "fields": {},
@@ -148,6 +164,10 @@
           },
           {
             "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "safe_member_expression",
             "named": true
           }
         ]
@@ -334,6 +354,10 @@
           },
           {
             "type": ">>",
+            "named": false
+          },
+          {
+            "type": "??",
             "named": false
           },
           {
@@ -1098,6 +1122,10 @@
           "named": true
         },
         {
+          "type": "forced_optional_expression",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1378,6 +1406,22 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "forced_optional_expression",
+    "named": true,
+    "fields": {
+      "operand": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
             "named": true
           }
         ]
@@ -2049,7 +2093,7 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -2057,6 +2101,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "ignored_match_binding",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2112,6 +2166,20 @@
         "types": [
           {
             "type": "else",
+            "named": false
+          }
+        ]
+      },
+      "guard": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "if",
             "named": false
           }
         ]
@@ -2583,6 +2651,10 @@
           },
           {
             "type": "named_type",
+            "named": true
+          },
+          {
+            "type": "optional_type",
             "named": true
           },
           {
@@ -3208,6 +3280,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "anonymous_scope",
+          "named": true
+        },
         {
           "type": "assert_statement",
           "named": true
@@ -3931,6 +4007,10 @@
           {
             "type": "member_expression",
             "named": true
+          },
+          {
+            "type": "safe_member_expression",
+            "named": true
           }
         ]
       },
@@ -4279,6 +4359,10 @@
     "named": false
   },
   {
+    "type": "??",
+    "named": false
+  },
+  {
     "type": "@",
     "named": false
   },
@@ -4394,6 +4478,10 @@
   {
     "type": "if",
     "named": false
+  },
+  {
+    "type": "ignored_match_binding",
+    "named": true
   },
   {
     "type": "in",
