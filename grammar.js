@@ -19,6 +19,7 @@ module.exports = grammar({
 
   extras: ($) => [/\s/, $.comment],
   word: ($) => $.identifier,
+  inline: ($) => [$._contextual_member_name],
   externals: ($) => [$._automatic_semicolon, $._try_else_continuation],
   conflicts: ($) => [
     [$.array_type, $.type],
@@ -253,7 +254,7 @@ module.exports = grammar({
     function_definition: ($) =>
       seq(
         "func",
-        field("name", $.identifier),
+        field("name", $._contextual_member_name),
         optional(field("type_parameters", $.type_parameter_list)),
         $.parameter_list,
         optional(field("return_type", choice($.void_type, $.borrowed_return_type, $.type))),
@@ -772,7 +773,7 @@ module.exports = grammar({
       seq(
         field("super", "super"),
         ".",
-        field("method", $.identifier),
+        field("method", $._contextual_member_name),
         field("arguments", $.argument_list),
       ),
 
@@ -821,10 +822,10 @@ module.exports = grammar({
 
     cascade_terminal_operation: ($) =>
       choice(
-        seq(".", field("field", $.identifier)),
+        seq(".", field("field", $._contextual_member_name)),
         seq(
           ".",
-          field("method", $.identifier),
+          field("method", $._contextual_member_name),
           "(",
           optional($._invocation_arguments),
           ")",
@@ -833,7 +834,7 @@ module.exports = grammar({
 
     cascade_method_call: ($) =>
       seq(
-        field("method", $.identifier),
+        field("method", $._contextual_member_name),
         "(",
         optional($._invocation_arguments),
         ")",
@@ -841,7 +842,7 @@ module.exports = grammar({
 
     cascade_field_assignment: ($) =>
       seq(
-        field("field", $.identifier),
+        field("field", $._contextual_member_name),
         "=",
         field("value", $._cascade_assignment_value),
       ),
@@ -976,7 +977,7 @@ module.exports = grammar({
           seq(
             field("object", alias($._expression_qualified_generic_type, $.qualified_generic_type)),
             ".",
-            field("field", $.identifier),
+            field("field", $._contextual_member_name),
           ),
         ),
         prec(
@@ -984,7 +985,7 @@ module.exports = grammar({
           seq(
             field("object", alias($._expression_generic_type, $.generic_type)),
             ".",
-            field("field", $.identifier),
+            field("field", $._contextual_member_name),
           ),
         ),
         prec.left(
@@ -1010,7 +1011,7 @@ module.exports = grammar({
               ),
             ),
             ".",
-            field("field", $.identifier),
+            field("field", $._contextual_member_name),
           ),
         ),
       ),
@@ -1039,7 +1040,7 @@ module.exports = grammar({
             ),
           ),
           "?.",
-          field("field", $.identifier),
+          field("field", $._contextual_member_name),
         ),
       ),
 
@@ -1334,6 +1335,8 @@ module.exports = grammar({
     boolean_literal: (_) => choice("true", "false"),
     null_literal: (_) => "null",
     self_expression: (_) => "self",
+    _contextual_member_name: ($) =>
+      choice($.identifier, alias("match", $.identifier)),
     identifier: (_) => /[A-Za-z_][A-Za-z0-9_]*/,
     comment: (_) => token(seq("//", /[^\n]*/)),
   },

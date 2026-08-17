@@ -112,3 +112,56 @@ func use_mutable(callback:func(&int)) {
             target: (identifier)
             (expression
               (identifier))))))))
+
+==================
+Contextual match method
+==================
+
+struct Pattern {
+    public func match(text:str) bool { return true }
+}
+
+func main() {
+    let expression = Pattern()
+    assert(expression.match("Silex"))
+}
+
+---
+
+(source_file
+  (structure_definition
+    name: (identifier)
+    (function_definition
+      name: (identifier)
+      (parameter_list
+        (parameter
+          name: (identifier)
+          type: (type
+            (builtin_type))))
+      return_type: (type
+        (builtin_type))
+      body: (block
+        (statement
+          (return_statement
+            value: (expression
+              (boolean_literal)))))))
+  (function_definition
+    name: (identifier)
+    (parameter_list)
+    body: (block
+      (statement
+        (variable_declaration
+          name: (identifier)
+          initializer: (expression
+            (invocation_expression
+              target: (identifier)))))
+      (statement
+        (assert_statement
+          function: (identifier)
+          condition: (expression
+            (invocation_expression
+              target: (member_expression
+                object: (identifier)
+                field: (identifier))
+              (expression
+                (string_literal)))))))))
