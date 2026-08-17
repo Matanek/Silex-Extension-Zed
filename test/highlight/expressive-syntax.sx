@@ -6,3 +6,10 @@ func classify(token:Token) int {
 //            ^ variable.special
     }
 }
+
+func compile_digits() {
+    let digits = try Regex.compile("\\d+")
+        else error "the digit pattern is invalid"
+//      ^^^^ keyword
+//           ^^^^^ variable
+}

@@ -754,10 +754,12 @@ func load(path:str) Result<int,str> {
     let first = try read(path) else {
         return Result<int,str>.failure("ignored")
     }
-    let second = try read(path) else error {
+    let second = try read(path)
+        else error {
         return Result<int,str>.failure(error)
     }
-    return try read(path) else error "cannot read: $(path)"
+    return try read(path)
+        else error "cannot read: $(path)"
 }
 
 ---

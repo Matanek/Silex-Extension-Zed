@@ -19,7 +19,7 @@ module.exports = grammar({
 
   extras: ($) => [/\s/, $.comment],
   word: ($) => $.identifier,
-  externals: ($) => [$._automatic_semicolon],
+  externals: ($) => [$._automatic_semicolon, $._try_else_continuation],
   conflicts: ($) => [
     [$.array_type, $.type],
     [$.array_type, $.view_type, $.type],
@@ -1244,6 +1244,7 @@ module.exports = grammar({
           field("operand", $.expression),
           optional(
             seq(
+              optional($._try_else_continuation),
               "else",
               choice(
                 field("alternative", $.block),
