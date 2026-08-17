@@ -46,6 +46,8 @@ module.exports = grammar({
           $.native_function_declaration,
           $.native_resource_declaration,
           $.public_declaration,
+          $.package_declaration,
+          $.module_declaration,
           $.internal_declaration,
           $.local_declaration,
         ),
@@ -108,6 +110,32 @@ module.exports = grammar({
         ),
       ),
 
+    package_declaration: ($) =>
+      seq(
+        "package",
+        choice(
+          $.enum_definition,
+          $.protocol_definition,
+          $.structure_definition,
+          $.function_definition,
+          $.native_function_declaration,
+          $.native_resource_declaration,
+        ),
+      ),
+
+    module_declaration: ($) =>
+      seq(
+        "module",
+        choice(
+          $.enum_definition,
+          $.protocol_definition,
+          $.structure_definition,
+          $.function_definition,
+          $.native_function_declaration,
+          $.native_resource_declaration,
+        ),
+      ),
+
     local_declaration: ($) =>
       seq(
         "local",
@@ -132,6 +160,7 @@ module.exports = grammar({
 
     protocol_method_requirement: ($) =>
       seq(
+        optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
         "func",
         field("name", $.identifier),
         $.parameter_list,
@@ -153,7 +182,7 @@ module.exports = grammar({
         "{",
         repeat(
           seq(
-            optional(field("visibility", choice("internal", "local", "public"))),
+            optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
             optional(field("static", "static")),
             $.function_definition,
           ),
@@ -210,19 +239,19 @@ module.exports = grammar({
         repeat(
           choice(
             seq(
-              optional(field("visibility", choice("private", "internal", "local", "protected", "public"))),
+              optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
               $.structure_definition,
             ),
             seq(
-              optional(field("visibility", choice("private", "internal", "local", "protected", "public"))),
+              optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
               optional(field("static", "static")),
               $.structure_field,
             ),
-            seq(optional(field("visibility", choice("private", "internal", "local", "protected", "public"))), $.constructor_definition),
+            seq(optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))), $.constructor_definition),
             $.drop_definition,
             seq(
               optional(field("override", "override")),
-              optional(field("visibility", choice("private", "internal", "local", "protected", "public"))),
+              optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
               optional(field("static", "static")),
               $.function_definition,
             ),

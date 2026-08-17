@@ -54,6 +54,14 @@
           },
           {
             "type": "SYMBOL",
+            "name": "package_declaration"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "module_declaration"
+          },
+          {
+            "type": "SYMBOL",
             "name": "internal_declaration"
           },
           {
@@ -349,6 +357,82 @@
         }
       ]
     },
+    "package_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "package"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "enum_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "protocol_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "structure_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "native_function_declaration"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "native_resource_declaration"
+            }
+          ]
+        }
+      ]
+    },
+    "module_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "module"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "enum_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "protocol_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "structure_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "native_function_declaration"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "native_resource_declaration"
+            }
+          ]
+        }
+      ]
+    },
     "local_declaration": {
       "type": "SEQ",
       "members": [
@@ -422,6 +506,51 @@
     "protocol_method_requirement": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "visibility",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "private"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "internal"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "package"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "module"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "local"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "protected"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "public"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "STRING",
           "value": "func"
@@ -562,11 +691,27 @@
                       "members": [
                         {
                           "type": "STRING",
+                          "value": "private"
+                        },
+                        {
+                          "type": "STRING",
                           "value": "internal"
                         },
                         {
                           "type": "STRING",
+                          "value": "package"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "module"
+                        },
+                        {
+                          "type": "STRING",
                           "value": "local"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "protected"
                         },
                         {
                           "type": "STRING",
@@ -993,6 +1138,14 @@
                             },
                             {
                               "type": "STRING",
+                              "value": "package"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "module"
+                            },
+                            {
+                              "type": "STRING",
                               "value": "local"
                             },
                             {
@@ -1036,6 +1189,14 @@
                             {
                               "type": "STRING",
                               "value": "internal"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "package"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "module"
                             },
                             {
                               "type": "STRING",
@@ -1098,6 +1259,14 @@
                             {
                               "type": "STRING",
                               "value": "internal"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "package"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "module"
                             },
                             {
                               "type": "STRING",
@@ -1164,6 +1333,14 @@
                             {
                               "type": "STRING",
                               "value": "internal"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "package"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "module"
                             },
                             {
                               "type": "STRING",

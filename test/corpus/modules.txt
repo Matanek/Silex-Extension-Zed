@@ -10,8 +10,8 @@ public struct Session {}
 public class Window {
   var id: int
   protected var state: int
-  public var title: str
-  public func show() {}
+  var title: str
+  func show() {}
 }
 
 public func create() Window.Session {
@@ -19,16 +19,17 @@ public func create() Window.Session {
 }
 
 local class Handle {
-  local var state: int
-  public init() {}
-  local func join() {}
+  var state: int
+  init() {}
+  func join() {}
 }
 
 local func make_handle() Handle {
   return Handle()
 }
 
-internal func package_helper() {}
+package func package_helper() {}
+module func explicit_module_helper() {}
 
 ---
 
@@ -113,7 +114,12 @@ internal func package_helper() {}
             value: (expression
               (invocation_expression
                 target: (identifier))))))))
-  (internal_declaration
+  (package_declaration
+    (function_definition
+      name: (identifier)
+      (parameter_list)
+      body: (block)))
+  (module_declaration
     (function_definition
       name: (identifier)
       (parameter_list)

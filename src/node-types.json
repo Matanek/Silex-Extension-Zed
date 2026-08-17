@@ -1290,6 +1290,22 @@
             "named": false
           },
           {
+            "type": "module",
+            "named": false
+          },
+          {
+            "type": "package",
+            "named": false
+          },
+          {
+            "type": "private",
+            "named": false
+          },
+          {
+            "type": "protected",
+            "named": false
+          },
+          {
             "type": "public",
             "named": false
           }
@@ -2305,6 +2321,41 @@
     }
   },
   {
+    "type": "module_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_definition",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "native_function_declaration",
+          "named": true
+        },
+        {
+          "type": "native_resource_declaration",
+          "named": true
+        },
+        {
+          "type": "protocol_definition",
+          "named": true
+        },
+        {
+          "type": "structure_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "move_expression",
     "named": true,
     "fields": {
@@ -2666,6 +2717,41 @@
     }
   },
   {
+    "type": "package_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum_definition",
+          "named": true
+        },
+        {
+          "type": "function_definition",
+          "named": true
+        },
+        {
+          "type": "native_function_declaration",
+          "named": true
+        },
+        {
+          "type": "native_resource_declaration",
+          "named": true
+        },
+        {
+          "type": "protocol_definition",
+          "named": true
+        },
+        {
+          "type": "structure_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "panic_statement",
     "named": true,
     "fields": {
@@ -2858,6 +2944,40 @@
           {
             "type": "void_type",
             "named": true
+          }
+        ]
+      },
+      "visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "internal",
+            "named": false
+          },
+          {
+            "type": "local",
+            "named": false
+          },
+          {
+            "type": "module",
+            "named": false
+          },
+          {
+            "type": "package",
+            "named": false
+          },
+          {
+            "type": "private",
+            "named": false
+          },
+          {
+            "type": "protected",
+            "named": false
+          },
+          {
+            "type": "public",
+            "named": false
           }
         ]
       }
@@ -3242,11 +3362,19 @@
           "named": true
         },
         {
+          "type": "module_declaration",
+          "named": true
+        },
+        {
           "type": "native_function_declaration",
           "named": true
         },
         {
           "type": "native_resource_declaration",
+          "named": true
+        },
+        {
+          "type": "package_declaration",
           "named": true
         },
         {
@@ -3468,6 +3596,14 @@
           },
           {
             "type": "local",
+            "named": false
+          },
+          {
+            "type": "module",
+            "named": false
+          },
+          {
+            "type": "package",
             "named": false
           },
           {
@@ -4536,6 +4672,10 @@
     "named": false
   },
   {
+    "type": "module",
+    "named": false
+  },
+  {
     "type": "move",
     "named": false
   },
@@ -4549,6 +4689,10 @@
   },
   {
     "type": "override",
+    "named": false
+  },
+  {
+    "type": "package",
     "named": false
   },
   {
