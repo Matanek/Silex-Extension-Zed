@@ -24,7 +24,7 @@ local class Handle {
 //  ^^^^^^^^ keyword
 }
 
-internal func package_helper() {}
+package func package_helper() {}
 
 func inspect(value:Vec3) {
     Configuration(strict:true)

@@ -62,10 +62,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "internal_declaration"
-          },
-          {
-            "type": "SYMBOL",
             "name": "local_declaration"
           }
         ]
@@ -319,44 +315,6 @@
         }
       ]
     },
-    "internal_declaration": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "internal"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "enum_definition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "protocol_definition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "structure_definition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "function_definition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "native_function_declaration"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "native_resource_declaration"
-            }
-          ]
-        }
-      ]
-    },
     "package_declaration": {
       "type": "SEQ",
       "members": [
@@ -518,10 +476,6 @@
                   {
                     "type": "STRING",
                     "value": "private"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "internal"
                   },
                   {
                     "type": "STRING",
@@ -692,10 +646,6 @@
                         {
                           "type": "STRING",
                           "value": "private"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "internal"
                         },
                         {
                           "type": "STRING",
@@ -998,8 +948,29 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "struct"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "structure_modifier",
+                      "content": {
+                        "type": "STRING",
+                        "value": "static"
+                      }
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "struct"
+                }
+              ]
             },
             {
               "type": "SEQ",
@@ -1134,10 +1105,6 @@
                             },
                             {
                               "type": "STRING",
-                              "value": "internal"
-                            },
-                            {
-                              "type": "STRING",
                               "value": "package"
                             },
                             {
@@ -1185,10 +1152,6 @@
                             {
                               "type": "STRING",
                               "value": "private"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": "internal"
                             },
                             {
                               "type": "STRING",
@@ -1255,10 +1218,6 @@
                             {
                               "type": "STRING",
                               "value": "private"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": "internal"
                             },
                             {
                               "type": "STRING",
@@ -1329,10 +1288,6 @@
                             {
                               "type": "STRING",
                               "value": "private"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": "internal"
                             },
                             {
                               "type": "STRING",

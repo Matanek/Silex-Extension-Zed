@@ -179,7 +179,6 @@
 [
   "use"
   "private"
-  "internal"
   "package"
   "module"
   "local"

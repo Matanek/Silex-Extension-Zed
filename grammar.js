@@ -48,7 +48,6 @@ module.exports = grammar({
           $.public_declaration,
           $.package_declaration,
           $.module_declaration,
-          $.internal_declaration,
           $.local_declaration,
         ),
       ),
@@ -87,19 +86,6 @@ module.exports = grammar({
     public_declaration: ($) =>
       seq(
         "public",
-        choice(
-          $.enum_definition,
-          $.protocol_definition,
-          $.structure_definition,
-          $.function_definition,
-          $.native_function_declaration,
-          $.native_resource_declaration,
-        ),
-      ),
-
-    internal_declaration: ($) =>
-      seq(
-        "internal",
         choice(
           $.enum_definition,
           $.protocol_definition,
@@ -160,7 +146,7 @@ module.exports = grammar({
 
     protocol_method_requirement: ($) =>
       seq(
-        optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
+        optional(field("visibility", choice("private", "package", "module", "local", "protected", "public"))),
         "func",
         field("name", $.identifier),
         $.parameter_list,
@@ -182,7 +168,7 @@ module.exports = grammar({
         "{",
         repeat(
           seq(
-            optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
+            optional(field("visibility", choice("private", "package", "module", "local", "protected", "public"))),
             optional(field("static", "static")),
             $.function_definition,
           ),
@@ -223,7 +209,10 @@ module.exports = grammar({
 
     structure_definition: ($) =>
       seq(
-        choice("struct", seq(optional(field("class_modifier", choice("static", "intrinsic"))), "class")),
+        choice(
+          seq(optional(field("structure_modifier", "static")), "struct"),
+          seq(optional(field("class_modifier", choice("static", "intrinsic"))), "class"),
+        ),
         field("name", $.identifier),
         optional(field("type_parameters", $.type_parameter_list)),
         optional(
@@ -239,19 +228,19 @@ module.exports = grammar({
         repeat(
           choice(
             seq(
-              optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
+              optional(field("visibility", choice("private", "package", "module", "local", "protected", "public"))),
               $.structure_definition,
             ),
             seq(
-              optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
+              optional(field("visibility", choice("private", "package", "module", "local", "protected", "public"))),
               optional(field("static", "static")),
               $.structure_field,
             ),
-            seq(optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))), $.constructor_definition),
+            seq(optional(field("visibility", choice("private", "package", "module", "local", "protected", "public"))), $.constructor_definition),
             $.drop_definition,
             seq(
               optional(field("override", "override")),
-              optional(field("visibility", choice("private", "internal", "package", "module", "local", "protected", "public"))),
+              optional(field("visibility", choice("private", "package", "module", "local", "protected", "public"))),
               optional(field("static", "static")),
               $.function_definition,
             ),
