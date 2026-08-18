@@ -180,6 +180,8 @@
   "use"
   "private"
   "internal"
+  "package"
+  "module"
   "local"
   "public"
   "protected"
