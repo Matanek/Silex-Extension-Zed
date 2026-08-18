@@ -1579,28 +1579,7 @@
   {
     "type": "function_type",
     "named": true,
-    "fields": {
-      "deferred": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "deferred",
-            "named": false
-          }
-        ]
-      },
-      "isolated": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "isolated",
-            "named": false
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
@@ -1966,26 +1945,6 @@
           {
             "type": "block",
             "named": true
-          }
-        ]
-      },
-      "deferred": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "deferred",
-            "named": false
-          }
-        ]
-      },
-      "isolated": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "isolated",
-            "named": false
           }
         ]
       },
@@ -4507,10 +4466,6 @@
     "named": false
   },
   {
-    "type": "deferred",
-    "named": false
-  },
-  {
     "type": "drop",
     "named": false
   },
@@ -4608,10 +4563,6 @@
   },
   {
     "type": "intrinsic",
-    "named": false
-  },
-  {
-    "type": "isolated",
     "named": false
   },
   {

@@ -91,11 +91,7 @@
   method: (identifier) @function.method.call)
 
 (lambda_expression "func" @keyword)
-(lambda_expression deferred: "deferred" @keyword)
-(lambda_expression isolated: "isolated" @keyword)
 (function_type "func" @type.builtin)
-(function_type deferred: "deferred" @keyword)
-(function_type isolated: "isolated" @keyword)
 (function_type_parameter mutable_reference: "&" @type)
 (function_type_parameter read_reference: "@" @type)
 (tuple_type access: "@" @type)
@@ -199,8 +195,6 @@
   "try"
   "copy"
   "move"
-  "deferred"
-  "isolated"
   "struct"
   "protocol"
   "extend"

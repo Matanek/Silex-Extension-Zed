@@ -2332,35 +2332,6 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "deferred",
-                  "content": {
-                    "type": "STRING",
-                    "value": "deferred"
-                  }
-                },
-                {
-                  "type": "FIELD",
-                  "name": "isolated",
-                  "content": {
-                    "type": "STRING",
-                    "value": "isolated"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "STRING",
           "value": "func"
         },
@@ -4664,35 +4635,6 @@
     "lambda_expression": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "deferred",
-                  "content": {
-                    "type": "STRING",
-                    "value": "deferred"
-                  }
-                },
-                {
-                  "type": "FIELD",
-                  "name": "isolated",
-                  "content": {
-                    "type": "STRING",
-                    "value": "isolated"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
         {
           "type": "STRING",
           "value": "func"
