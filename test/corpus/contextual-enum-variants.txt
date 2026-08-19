@@ -1,0 +1,62 @@
+============================
+Contextual in enum variant
+============================
+
+enum Easing { in; out }
+
+func describe(value:Easing) str {
+    return match value {
+        in => "in"
+        out => "out"
+    }
+}
+
+func main() {
+    let easing = Easing.in
+}
+
+---
+
+(source_file
+  (enum_definition
+    (identifier)
+    (enum_variant
+      (identifier))
+    (enum_variant
+      (identifier)))
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (named_type
+            (type_identifier)))))
+    (type
+      (builtin_type))
+    (block
+      (statement
+        (return_statement
+          (expression
+            (match_expression
+              (expression
+                (identifier))
+              (match_branch
+                (identifier)
+                (expression
+                  (string_literal)))
+              (match_branch
+                (identifier)
+                (expression
+                  (string_literal)))))))))
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (member_expression
+              (identifier)
+              (identifier))))))))

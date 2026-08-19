@@ -19,7 +19,7 @@ module.exports = grammar({
 
   extras: ($) => [/\s/, $.comment],
   word: ($) => $.identifier,
-  inline: ($) => [$._contextual_member_name],
+  inline: ($) => [$._contextual_member_name, $._contextual_variant_name],
   externals: ($) => [$._automatic_semicolon, $._try_else_continuation],
   conflicts: ($) => [
     [$.array_type, $.type],
@@ -191,7 +191,7 @@ module.exports = grammar({
 
     enum_variant: ($) =>
       seq(
-        field("name", $.identifier),
+        field("name", $._contextual_variant_name),
         optional(
           field(
             "associated_types",
@@ -747,7 +747,7 @@ module.exports = grammar({
       seq(
         choice(
           seq(
-            field("variant", $.identifier),
+            field("variant", $._contextual_variant_name),
             optional(field("bindings", $.match_binding_list)),
           ),
           field("default", "else"),
@@ -1352,7 +1352,9 @@ module.exports = grammar({
     null_literal: (_) => "null",
     self_expression: (_) => "self",
     _contextual_member_name: ($) =>
-      choice($.identifier, alias("match", $.identifier)),
+      choice($.identifier, alias("in", $.identifier), alias("match", $.identifier)),
+    _contextual_variant_name: ($) =>
+      choice($.identifier, alias("in", $.identifier)),
     identifier: (_) => /[A-Za-z_][A-Za-z0-9_]*/,
     comment: (_) => token(seq("//", /[^\n]*/)),
   },
