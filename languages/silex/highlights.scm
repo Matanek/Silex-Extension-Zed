@@ -43,6 +43,12 @@
   type: (_)
   alias: (identifier) @type.definition)
 
+(catalog_contribution
+  catalog: (_) @type)
+
+(catalog_reexport
+  alias: (identifier) @type.definition)
+
 (structure_field
   name: (identifier) @property)
 
@@ -198,6 +204,7 @@
   "struct"
   "protocol"
   "extend"
+  "contribute"
   "enum"
   "match"
   "class"

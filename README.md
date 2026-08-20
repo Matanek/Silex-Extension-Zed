@@ -19,7 +19,7 @@ the main [Silex repository](https://github.com/Matanek/Silex).
 ```sh
 npm install
 npx tree-sitter generate
-npx tree-sitter test
+npm test
 ```
 
 ## Build the extension
