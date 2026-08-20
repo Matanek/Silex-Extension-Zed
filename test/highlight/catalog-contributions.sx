@@ -1,0 +1,6 @@
+contribute GFX.Plugins {
+// <- keyword
+//         ^^^^^^^^^^^ type
+    public use GFX.Physics.Plugin as Physics
+//                                   ^^^^^^^ type.definition
+}

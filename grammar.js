@@ -36,6 +36,7 @@ module.exports = grammar({
       repeat(
         choice(
           $.use_declaration,
+          $.catalog_contribution,
           $.enum_definition,
           $.protocol_definition,
           $.extension_definition,
@@ -80,6 +81,24 @@ module.exports = grammar({
             field("alias", $.identifier),
           ),
         ),
+        choice(";", $._automatic_semicolon),
+      ),
+
+    catalog_contribution: ($) =>
+      seq(
+        "contribute",
+        field("catalog", choice($.qualified_name, $.identifier)),
+        "{",
+        repeat1($.catalog_reexport),
+        "}",
+      ),
+
+    catalog_reexport: ($) =>
+      seq(
+        "public",
+        "use",
+        field("declaration", choice($.qualified_name, $.identifier)),
+        optional(seq("as", field("alias", $.identifier))),
         choice(";", $._automatic_semicolon),
       ),
 

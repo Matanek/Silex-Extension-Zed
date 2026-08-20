@@ -784,6 +784,66 @@
     }
   },
   {
+    "type": "catalog_contribution",
+    "named": true,
+    "fields": {
+      "catalog": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "catalog_reexport",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "catalog_reexport",
+    "named": true,
+    "fields": {
+      "alias": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "declaration": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "qualified_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "conditional_binding",
     "named": true,
     "fields": {
@@ -3254,6 +3314,10 @@
       "required": false,
       "types": [
         {
+          "type": "catalog_contribution",
+          "named": true
+        },
+        {
           "type": "enum_definition",
           "named": true
         },
@@ -4460,6 +4524,10 @@
   {
     "type": "continue_statement",
     "named": true
+  },
+  {
+    "type": "contribute",
+    "named": false
   },
   {
     "type": "copy",

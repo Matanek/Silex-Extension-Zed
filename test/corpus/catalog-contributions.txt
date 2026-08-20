@@ -1,0 +1,35 @@
+==================
+Umbrella catalog contributions
+==================
+
+contribute GFX.Components {
+  public use GFX.Physics.RigidBody2D.RigidBody2D
+}
+
+contribute GFX.Plugins {
+  public use GFX.Physics.Plugin as Physics
+}
+
+---
+
+(source_file
+  (catalog_contribution
+    catalog: (qualified_name
+      (identifier)
+      (identifier))
+    (catalog_reexport
+      declaration: (qualified_name
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier))))
+  (catalog_contribution
+    catalog: (qualified_name
+      (identifier)
+      (identifier))
+    (catalog_reexport
+      declaration: (qualified_name
+        (identifier)
+        (identifier)
+        (identifier))
+      alias: (identifier))))
