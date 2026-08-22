@@ -84,3 +84,42 @@ func main() {
             (identifier))
           argument: (expression
             (identifier)))))))
+
+============================================
+Block strings retain parsed interpolation
+============================================
+
+func main() {
+    let name = "Ada"
+    let message = "
+    Hello, $(name).
+        Indented line.
+    "
+    print(message)
+}
+
+---
+
+(source_file
+  (function_definition
+    name: (identifier)
+    (parameter_list)
+    body: (block
+      (statement
+        (variable_declaration
+          name: (identifier)
+          initializer: (expression
+            (string_literal))))
+      (statement
+        (variable_declaration
+          name: (identifier)
+          initializer: (expression
+            (string_literal
+              (string_interpolation
+                value: (expression
+                  (identifier)))))))
+      (statement
+        (print_statement
+          function: (identifier)
+          argument: (expression
+            (identifier)))))))

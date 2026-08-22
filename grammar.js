@@ -1331,18 +1331,34 @@ module.exports = grammar({
       seq(field("name", $.identifier), ":", field("value", $.expression)),
 
     string_literal: ($) =>
-      seq(
-        '"',
-        repeat(
-          choice(
-            $.escape_sequence,
-            $.escaped_dollar,
-            $.string_interpolation,
-            $._string_content,
-            $._literal_dollar,
+      choice(
+        seq(
+          '"',
+          repeat(
+            choice(
+              $.escape_sequence,
+              $.escaped_dollar,
+              $.string_interpolation,
+              $._string_content,
+              $._literal_dollar,
+            ),
           ),
+          '"',
         ),
-        '"',
+        seq(
+          '"',
+          /\r?\n/,
+          repeat(
+            choice(
+              $.escape_sequence,
+              $.escaped_dollar,
+              $.string_interpolation,
+              $._block_string_content,
+              $._literal_dollar,
+            ),
+          ),
+          '"',
+        ),
       ),
 
     string_interpolation: ($) => seq("$(", field("value", $.expression), ")"),
@@ -1352,6 +1368,8 @@ module.exports = grammar({
     _literal_dollar: (_) => token.immediate("$"),
 
     _string_content: (_) => token.immediate(/[^"\\$\n\r]+/),
+
+    _block_string_content: (_) => token.immediate(/[^"\\$]+/),
 
     escape_sequence: (_) =>
       token(choice(/\\["\\nrt0]/, /\\u\{[0-9a-fA-F]{1,6}\}/)),

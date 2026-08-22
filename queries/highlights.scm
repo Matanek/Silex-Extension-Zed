@@ -174,6 +174,10 @@
 (comment) @comment
 
 [
+  "("
+  ")"
+  "{"
+  "}"
   "["
   "]"
 ] @punctuation.bracket
@@ -247,3 +251,8 @@
   "?."
   "=>"
 ] @operator
+
+; Keep this after generic punctuation captures so interpolation delimiters win.
+(string_interpolation
+  "$(" @punctuation.special
+  ")" @punctuation.special)

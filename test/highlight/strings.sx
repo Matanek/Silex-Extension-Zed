@@ -2,9 +2,19 @@ func main() {
 let value = 21
 let message = "Value: $(value * 2)"
 //            ^^^^^^^^ string
-//                    ^^ string
+//                    ^^ punctuation.special
 //                      ^^^^^ variable
 //                            ^ operator
 //                              ^ number
-//                               ^^ string
+//                               ^ punctuation.special
+//                                ^ string
+let block = "
+//          ^ string
+    Value: $(value)
+//  ^^^^^^^^ string
+//          ^^ punctuation.special
+//          ^^^^^ variable
+//               ^ punctuation.special
+    "
+//  ^ string
 }
