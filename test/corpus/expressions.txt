@@ -455,7 +455,7 @@ func main() {
           (identifier)
           (expression
             (integer_literal)))
-        (comment))
+        (line_comment))
       (statement
         (variable_declaration
           (identifier)

@@ -1,0 +1,42 @@
+=============================================
+Line comments and nested block comments
+=============================================
+
+// canonical line comment
+# alternate line comment
+/* outer block
+   /* nested block */
+   outer block */
+
+---
+
+(source_file
+  (line_comment)
+  (line_comment)
+  (block_comment))
+
+=============================================
+Block comments remain extras around division
+=============================================
+
+func main() {
+    let value = 8 /* outer /* nested */ outer */ / 2
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (binary_expression
+              (expression
+                (integer_literal))
+              (block_comment)
+              (expression
+                (integer_literal)))))))))

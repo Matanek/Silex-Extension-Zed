@@ -171,7 +171,10 @@
   operator: "&" @operator)
 (read_reference_expression "@" @operator)
 (self_expression) @keyword
-(comment) @comment
+[
+  (line_comment)
+  (block_comment)
+] @comment
 
 [
   "("

@@ -6,6 +6,7 @@
 enum TokenType {
     AUTOMATIC_SEMICOLON,
     TRY_ELSE_CONTINUATION,
+    BLOCK_COMMENT,
 };
 
 static bool is_identifier_character(int32_t character) {
@@ -23,6 +24,41 @@ static bool next_token_is_else(TSLexer* lexer) {
         lexer->advance(lexer, false);
     }
     return !is_identifier_character(lexer->lookahead);
+}
+
+static bool scan_block_comment(TSLexer* lexer) {
+    unsigned depth = 1;
+
+    while (lexer->lookahead != 0) {
+        if (lexer->lookahead == '/') {
+            lexer->advance(lexer, false);
+            if (lexer->lookahead == '*') {
+                lexer->advance(lexer, false);
+                depth += 1;
+            }
+            continue;
+        }
+
+        if (lexer->lookahead == '*') {
+            lexer->advance(lexer, false);
+            if (lexer->lookahead == '/') {
+                lexer->advance(lexer, false);
+                depth -= 1;
+                if (depth == 0) {
+                    lexer->mark_end(lexer);
+                    lexer->result_symbol = BLOCK_COMMENT;
+                    return true;
+                }
+            }
+            continue;
+        }
+
+        lexer->advance(lexer, false);
+    }
+
+    lexer->mark_end(lexer);
+    lexer->result_symbol = BLOCK_COMMENT;
+    return true;
 }
 
 void* tree_sitter_silex_external_scanner_create(void) {
@@ -55,6 +91,26 @@ bool tree_sitter_silex_external_scanner_scan(
     const bool* valid_symbols
 ) {
     (void)payload;
+    const bool only_block_comment =
+        valid_symbols[BLOCK_COMMENT] &&
+        !valid_symbols[AUTOMATIC_SEMICOLON] &&
+        !valid_symbols[TRY_ELSE_CONTINUATION];
+    if (valid_symbols[BLOCK_COMMENT]) {
+        while (
+            lexer->lookahead == ' ' || lexer->lookahead == '\t' ||
+            lexer->lookahead == '\r' ||
+            (only_block_comment && lexer->lookahead == '\n')
+        ) {
+            lexer->advance(lexer, true);
+        }
+        if (lexer->lookahead == '/') {
+            lexer->advance(lexer, false);
+            if (lexer->lookahead != '*') return false;
+            lexer->advance(lexer, false);
+            return scan_block_comment(lexer);
+        }
+        if (only_block_comment) return false;
+    }
     if (
         !valid_symbols[AUTOMATIC_SEMICOLON] &&
         !valid_symbols[TRY_ELSE_CONTINUATION]

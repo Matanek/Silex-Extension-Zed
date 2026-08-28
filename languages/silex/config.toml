@@ -2,6 +2,7 @@ name = "Silex"
 grammar = "silex"
 path_suffixes = ["sx"]
 line_comments = ["// "]
+block_comment = ["/*", "*/"]
 tab_size = 4
 hard_tabs = false
 autoclose_before = ";:.,=}])"

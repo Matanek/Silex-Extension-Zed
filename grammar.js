@@ -17,10 +17,14 @@ const PREC = {
 module.exports = grammar({
   name: "silex",
 
-  extras: ($) => [/\s/, $.comment],
+  extras: ($) => [/\s/, $.line_comment, $.block_comment],
   word: ($) => $.identifier,
   inline: ($) => [$._contextual_member_name, $._contextual_variant_name],
-  externals: ($) => [$._automatic_semicolon, $._try_else_continuation],
+  externals: ($) => [
+    $._automatic_semicolon,
+    $._try_else_continuation,
+    $.block_comment,
+  ],
   conflicts: ($) => [
     [$.array_type, $.type],
     [$.array_type, $.view_type, $.type],
@@ -1393,6 +1397,6 @@ module.exports = grammar({
     _contextual_variant_name: ($) =>
       choice($.identifier, alias("in", $.identifier)),
     identifier: (_) => /[A-Za-z_][A-Za-z0-9_]*/,
-    comment: (_) => token(seq("//", /[^\n]*/)),
+    line_comment: (_) => token(seq(choice("//", "#"), /[^\n]*/)),
   },
 });
