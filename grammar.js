@@ -290,8 +290,9 @@ module.exports = grammar({
         field("name", $.identifier),
         ":",
         field("type", $.type),
+        optional(seq("=", field("default", $.expression))),
         choice(
-          seq(optional(seq("=", field("default", $.expression))), choice(";", $._automatic_semicolon)),
+          choice(";", $._automatic_semicolon),
           field("accessors", $.property_accessor_block),
         ),
       ),

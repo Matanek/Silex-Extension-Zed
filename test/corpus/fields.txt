@@ -17,9 +17,13 @@ class User {
 
 struct Temperature {
     var raw:int
-    var celsius:int {
+    var celsius:int = 0 {
         get { return self.raw }
         set(value) { self.raw = value }
+    }
+
+    var fahrenheit:int = 32 {
+        get { return self.fahrenheit }
     }
 }
 
@@ -70,6 +74,8 @@ struct Temperature {
       (identifier)
       (type
         (builtin_type))
+      (expression
+        (integer_literal))
       (property_accessor_block
         (property_getter
           (block
@@ -88,4 +94,19 @@ struct Temperature {
                   (self_expression)
                   (identifier))
                 (expression
-                  (identifier))))))))))
+                  (identifier))))))))
+    (structure_field
+      (identifier)
+      (type
+        (builtin_type))
+      (expression
+        (integer_literal))
+      (property_accessor_block
+        (property_getter
+          (block
+            (statement
+              (return_statement
+                (expression
+                  (member_expression
+                    (self_expression)
+                    (identifier)))))))))))
