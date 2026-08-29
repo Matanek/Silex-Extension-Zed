@@ -2870,6 +2870,87 @@
     }
   },
   {
+    "type": "property_accessor_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "property_getter",
+          "named": true
+        },
+        {
+          "type": "property_setter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_getter",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "kind": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "get",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "property_setter",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "kind": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "set",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "protocol_definition",
     "named": true,
     "fields": {
@@ -2890,6 +2971,10 @@
       "types": [
         {
           "type": "protocol_method_requirement",
+          "named": true
+        },
+        {
+          "type": "protocol_property_requirement",
           "named": true
         }
       ]
@@ -2967,6 +3052,82 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "protocol_property_requirement",
+    "named": true,
+    "fields": {
+      "getter": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "get",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "setter": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "set",
+            "named": false
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "visibility": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "local",
+            "named": false
+          },
+          {
+            "type": "module",
+            "named": false
+          },
+          {
+            "type": "package",
+            "named": false
+          },
+          {
+            "type": "private",
+            "named": false
+          },
+          {
+            "type": "protected",
+            "named": false
+          },
+          {
+            "type": "public",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -3634,6 +3795,16 @@
     "type": "structure_field",
     "named": true,
     "fields": {
+      "accessors": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "property_accessor_block",
+            "named": true
+          }
+        ]
+      },
       "default": {
         "multiple": false,
         "required": false,
@@ -4590,6 +4761,10 @@
     "named": false
   },
   {
+    "type": "get",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -4701,6 +4876,10 @@
   {
     "type": "self_expression",
     "named": true
+  },
+  {
+    "type": "set",
+    "named": false
   },
   {
     "type": "static",

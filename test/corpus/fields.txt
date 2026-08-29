@@ -15,6 +15,14 @@ class User {
     protected let generation:int = 1
 }
 
+struct Temperature {
+    var raw:int
+    var celsius:int {
+        get { return self.raw }
+        set(value) { self.raw = value }
+    }
+}
+
 ---
 
 (source_file
@@ -51,4 +59,33 @@ class User {
       (type
         (builtin_type))
       (expression
-        (integer_literal)))))
+        (integer_literal))))
+  (structure_definition
+    (identifier)
+    (structure_field
+      (identifier)
+      (type
+        (builtin_type)))
+    (structure_field
+      (identifier)
+      (type
+        (builtin_type))
+      (property_accessor_block
+        (property_getter
+          (block
+            (statement
+              (return_statement
+                (expression
+                  (member_expression
+                    (self_expression)
+                    (identifier)))))))
+        (property_setter
+          (identifier)
+          (block
+            (statement
+              (assignment_statement
+                (member_expression
+                  (self_expression)
+                  (identifier))
+                (expression
+                  (identifier))))))))))

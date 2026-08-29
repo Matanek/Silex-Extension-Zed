@@ -4,6 +4,8 @@ Protocols, conformances, and generic bounds
 
 protocol Describable {
     func describe() str
+    name:str { get }
+    title:str { get set }
 }
 
 class Player : Entity, Describable {}
@@ -26,6 +28,14 @@ func dynamic_label(value:Describable) str {
     (protocol_method_requirement
       (identifier)
       (parameter_list)
+      (type
+        (builtin_type)))
+    (protocol_property_requirement
+      (identifier)
+      (type
+        (builtin_type)))
+    (protocol_property_requirement
+      (identifier)
       (type
         (builtin_type))))
   (structure_definition

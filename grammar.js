@@ -163,7 +163,7 @@ module.exports = grammar({
         "protocol",
         field("name", $.identifier),
         "{",
-        repeat($.protocol_method_requirement),
+        repeat(choice($.protocol_method_requirement, $.protocol_property_requirement)),
         "}",
       ),
 
@@ -175,6 +175,18 @@ module.exports = grammar({
         $.parameter_list,
         optional(field("return_type", choice($.void_type, $.borrowed_return_type, $.type))),
         choice(";", $._automatic_semicolon),
+      ),
+
+    protocol_property_requirement: ($) =>
+      seq(
+        optional(field("visibility", choice("private", "package", "module", "local", "protected", "public"))),
+        field("name", $.identifier),
+        ":",
+        field("type", $.type),
+        "{",
+        field("getter", "get"),
+        optional(field("setter", "set")),
+        "}",
       ),
 
     extension_definition: ($) =>
@@ -278,8 +290,25 @@ module.exports = grammar({
         field("name", $.identifier),
         ":",
         field("type", $.type),
-        optional(seq("=", field("default", $.expression))),
-        choice(";", $._automatic_semicolon),
+        choice(
+          seq(optional(seq("=", field("default", $.expression))), choice(";", $._automatic_semicolon)),
+          field("accessors", $.property_accessor_block),
+        ),
+      ),
+
+    property_accessor_block: ($) =>
+      seq("{", repeat1(choice($.property_getter, $.property_setter)), "}"),
+
+    property_getter: ($) =>
+      seq(field("kind", "get"), field("body", $.block)),
+
+    property_setter: ($) =>
+      seq(
+        field("kind", "set"),
+        "(",
+        field("name", $.identifier),
+        ")",
+        field("body", $.block),
       ),
 
     constructor_definition: ($) =>

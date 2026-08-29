@@ -1,0 +1,18 @@
+protocol Named {
+    name:str { get }
+//  ^^^^ property
+//             ^^^ keyword
+}
+
+struct Counter {
+    var raw:int
+
+    var value:int {
+//      ^^^^^ property
+        get { return self.raw }
+//      ^^^ keyword
+        set(replacement) { self.raw = replacement }
+//      ^^^ keyword
+//          ^^^^^^^^^^^ variable.parameter
+    }
+}

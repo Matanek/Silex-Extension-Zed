@@ -52,6 +52,12 @@
 (structure_field
   name: (identifier) @property)
 
+(protocol_property_requirement
+  name: (identifier) @property)
+
+(property_setter
+  name: (identifier) @variable.parameter)
+
 (field_initializer
   name: (identifier) @property)
 
@@ -192,6 +198,8 @@
   "as"
   "let"
   "var"
+  "get"
+  "set"
   "if"
   "elif"
   "else"
