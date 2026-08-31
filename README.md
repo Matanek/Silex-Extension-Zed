@@ -7,7 +7,44 @@ starts the language server supplied by the `silex` command.
 The compiler, semantic analysis and language-server implementation remain in
 the main [Silex repository](https://github.com/Matanek/Silex).
 
-## Requirements
+## Install the extension
+
+The extension is awaiting inclusion in the Zed extension gallery through
+[zed-industries/extensions#7190](https://github.com/zed-industries/extensions/pull/7190).
+Until it appears in Zed's Extensions view, install it as a development
+extension from this repository.
+
+First, [install Silex](https://github.com/Matanek/Silex-Documentation/blob/main/EN/Tools/Installation.md)
+and check that Zed can find its command:
+
+```sh
+silex --version
+```
+
+Install Git and Rust with `rustup`, then add the WebAssembly target used by Zed
+extensions:
+
+```sh
+rustup target add wasm32-wasip2
+git clone https://github.com/Matanek/Silex-Extension-Zed.git
+```
+
+In Zed, open the command palette, run `zed: install dev extension`, and select
+the cloned `Silex-Extension-Zed` directory that contains `extension.toml`.
+Open an `.sx` file to start `silex lsp` automatically. If Silex was added to
+`PATH` while Zed was open, restart Zed first.
+
+To update this development installation, pull the repository and run
+`zed: rebuild dev extension` from the command palette:
+
+```sh
+git -C Silex-Extension-Zed pull --ff-only
+```
+
+After the catalog pull request is merged and the extension becomes available,
+open Zed's Extensions view, search for `Silex`, and install it there instead.
+
+## Development requirements
 
 - `silex` available in `PATH`;
 - Node.js and npm for the Tree-sitter grammar;
