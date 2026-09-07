@@ -13,4 +13,4 @@ languages = ["Silex"]
 
 [grammars.silex]
 repository = "https://github.com/Matanek/Silex-Extension-Zed"
-rev = "a57ebe8b8aa9404b1799ff206904a4432310d05f"
+rev = "402ca62ea354c4a8ae7bf32f8d24420fc15a8d60"
