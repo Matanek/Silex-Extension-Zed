@@ -1,10 +1,5 @@
 use zed_extension_api as zed;
 
-const SILEX_COMMAND: &str = match option_env!("SILEX_LSP_COMMAND") {
-    Some(command) => command,
-    None => "silex",
-};
-
 struct SilexExtension;
 
 impl zed::Extension for SilexExtension {
@@ -15,10 +10,14 @@ impl zed::Extension for SilexExtension {
     fn language_server_command(
         &mut self,
         _language_server_id: &zed::LanguageServerId,
-        _worktree: &zed::Worktree,
+        worktree: &zed::Worktree,
     ) -> zed::Result<zed::Command> {
+        let command = worktree
+            .which("silex")
+            .ok_or_else(|| "silex was not found in the user PATH".to_string())?;
+
         Ok(zed::Command {
-            command: SILEX_COMMAND.to_string(),
+            command,
             args: vec!["lsp".to_string()],
             env: Vec::new(),
         })
