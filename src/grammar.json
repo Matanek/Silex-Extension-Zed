@@ -1214,7 +1214,7 @@
                           },
                           {
                             "type": "STRING",
-                            "value": "noncopyable"
+                            "value": "nocopy"
                           }
                         ]
                       }

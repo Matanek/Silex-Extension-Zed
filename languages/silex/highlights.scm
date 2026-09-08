@@ -212,6 +212,7 @@
   "try"
   "copy"
   "move"
+  "nocopy"
   "struct"
   "protocol"
   "extend"

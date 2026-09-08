@@ -1,8 +1,8 @@
 ============================================
-Noncopyable classes and typed method spellings
+Nocopy classes and typed method spellings
 ============================================
 
-public noncopyable class Handle {
+public nocopy class Handle {
     var value:int
 }
 

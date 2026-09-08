@@ -11,7 +11,7 @@
   ],
   "license": "Apache-2.0 WITH LLVM-exception",
   "scripts": {
-    "test": "tree-sitter test && tree-sitter query --test languages/silex/highlights.scm test/highlight/catalog-contributions.sx"
+    "test": "tree-sitter test && tree-sitter query --test languages/silex/highlights.scm test/highlight/catalog-contributions.sx && tree-sitter query --test languages/silex/highlights.scm test/zed-highlight/nocopy.sx"
   },
   "tree-sitter": [
     {

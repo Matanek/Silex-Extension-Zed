@@ -54,7 +54,7 @@ enum ts_symbol_identifiers {
   anon_sym_DASH = 32,
   anon_sym_struct = 33,
   anon_sym_intrinsic = 34,
-  anon_sym_noncopyable = 35,
+  anon_sym_nocopy = 35,
   anon_sym_class = 36,
   anon_sym_override = 37,
   anon_sym_var = 38,
@@ -351,7 +351,7 @@ static const char * const ts_symbol_names[] = {
   [anon_sym_DASH] = "-",
   [anon_sym_struct] = "struct",
   [anon_sym_intrinsic] = "intrinsic",
-  [anon_sym_noncopyable] = "noncopyable",
+  [anon_sym_nocopy] = "nocopy",
   [anon_sym_class] = "class",
   [anon_sym_override] = "override",
   [anon_sym_var] = "var",
@@ -648,7 +648,7 @@ static const TSSymbol ts_symbol_map[] = {
   [anon_sym_DASH] = anon_sym_DASH,
   [anon_sym_struct] = anon_sym_struct,
   [anon_sym_intrinsic] = anon_sym_intrinsic,
-  [anon_sym_noncopyable] = anon_sym_noncopyable,
+  [anon_sym_nocopy] = anon_sym_nocopy,
   [anon_sym_class] = anon_sym_class,
   [anon_sym_override] = anon_sym_override,
   [anon_sym_var] = anon_sym_var,
@@ -1050,7 +1050,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = false,
   },
-  [anon_sym_noncopyable] = {
+  [anon_sym_nocopy] = {
     .visible = true,
     .named = false,
   },
@@ -6835,7 +6835,7 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       if (lookahead == 't') ADVANCE(88);
       END_STATE();
     case 45:
-      if (lookahead == 'n') ADVANCE(89);
+      if (lookahead == 'c') ADVANCE(89);
       END_STATE();
     case 46:
       if (lookahead == 'l') ADVANCE(90);
@@ -6978,7 +6978,7 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       if (lookahead == 'i') ADVANCE(139);
       END_STATE();
     case 89:
-      if (lookahead == 'c') ADVANCE(140);
+      if (lookahead == 'o') ADVANCE(140);
       END_STATE();
     case 90:
       if (lookahead == 'l') ADVANCE(141);
@@ -7135,7 +7135,7 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       if (lookahead == 'v') ADVANCE(179);
       END_STATE();
     case 140:
-      if (lookahead == 'o') ADVANCE(180);
+      if (lookahead == 'p') ADVANCE(180);
       END_STATE();
     case 141:
       ACCEPT_TOKEN(sym_null_literal);
@@ -7262,7 +7262,7 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       if (lookahead == 'e') ADVANCE(209);
       END_STATE();
     case 180:
-      if (lookahead == 'p') ADVANCE(210);
+      if (lookahead == 'y') ADVANCE(210);
       END_STATE();
     case 181:
       if (lookahead == 'i') ADVANCE(211);
@@ -7352,28 +7352,28 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_native);
       END_STATE();
     case 210:
-      if (lookahead == 'y') ADVANCE(230);
+      ACCEPT_TOKEN(anon_sym_nocopy);
       END_STATE();
     case 211:
-      if (lookahead == 'd') ADVANCE(231);
+      if (lookahead == 'd') ADVANCE(230);
       END_STATE();
     case 212:
-      if (lookahead == 'e') ADVANCE(232);
+      if (lookahead == 'e') ADVANCE(231);
       END_STATE();
     case 213:
-      if (lookahead == 'e') ADVANCE(233);
+      if (lookahead == 'e') ADVANCE(232);
       END_STATE();
     case 214:
-      if (lookahead == 't') ADVANCE(234);
+      if (lookahead == 't') ADVANCE(233);
       END_STATE();
     case 215:
-      if (lookahead == 'o') ADVANCE(235);
+      if (lookahead == 'o') ADVANCE(234);
       END_STATE();
     case 216:
       ACCEPT_TOKEN(anon_sym_public);
       END_STATE();
     case 217:
-      if (lookahead == 'c') ADVANCE(236);
+      if (lookahead == 'c') ADVANCE(235);
       END_STATE();
     case 218:
       ACCEPT_TOKEN(anon_sym_return);
@@ -7394,10 +7394,10 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_uint64);
       END_STATE();
     case 224:
-      if (lookahead == 'e') ADVANCE(237);
+      if (lookahead == 'e') ADVANCE(236);
       END_STATE();
     case 225:
-      if (lookahead == 'u') ADVANCE(238);
+      if (lookahead == 'u') ADVANCE(237);
       END_STATE();
     case 226:
       ACCEPT_TOKEN(anon_sym_float32);
@@ -7406,79 +7406,64 @@ static bool ts_lex_keywords(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(anon_sym_float64);
       END_STATE();
     case 228:
-      if (lookahead == 'n') ADVANCE(239);
+      if (lookahead == 'n') ADVANCE(238);
       END_STATE();
     case 229:
-      if (lookahead == 'i') ADVANCE(240);
+      if (lookahead == 'i') ADVANCE(239);
       END_STATE();
     case 230:
-      if (lookahead == 'a') ADVANCE(241);
+      if (lookahead == 'e') ADVANCE(240);
       END_STATE();
     case 231:
-      if (lookahead == 'e') ADVANCE(242);
-      END_STATE();
-    case 232:
       ACCEPT_TOKEN(anon_sym_package);
       END_STATE();
-    case 233:
+    case 232:
       ACCEPT_TOKEN(anon_sym_private);
       END_STATE();
+    case 233:
+      if (lookahead == 'e') ADVANCE(241);
+      END_STATE();
     case 234:
-      if (lookahead == 'e') ADVANCE(243);
+      if (lookahead == 'l') ADVANCE(242);
       END_STATE();
     case 235:
-      if (lookahead == 'l') ADVANCE(244);
+      if (lookahead == 'e') ADVANCE(243);
       END_STATE();
     case 236:
-      if (lookahead == 'e') ADVANCE(245);
-      END_STATE();
-    case 237:
       ACCEPT_TOKEN(sym_continue_statement);
       END_STATE();
-    case 238:
-      if (lookahead == 't') ADVANCE(246);
+    case 237:
+      if (lookahead == 't') ADVANCE(244);
       END_STATE();
-    case 239:
+    case 238:
       ACCEPT_TOKEN(anon_sym_function);
       END_STATE();
+    case 239:
+      if (lookahead == 'c') ADVANCE(245);
+      END_STATE();
     case 240:
-      if (lookahead == 'c') ADVANCE(247);
-      END_STATE();
-    case 241:
-      if (lookahead == 'b') ADVANCE(248);
-      END_STATE();
-    case 242:
       ACCEPT_TOKEN(anon_sym_override);
       END_STATE();
-    case 243:
-      if (lookahead == 'd') ADVANCE(249);
+    case 241:
+      if (lookahead == 'd') ADVANCE(246);
       END_STATE();
-    case 244:
+    case 242:
       ACCEPT_TOKEN(anon_sym_protocol);
       END_STATE();
-    case 245:
+    case 243:
       ACCEPT_TOKEN(anon_sym_resource);
       END_STATE();
-    case 246:
-      if (lookahead == 'e') ADVANCE(250);
+    case 244:
+      if (lookahead == 'e') ADVANCE(247);
       END_STATE();
-    case 247:
+    case 245:
       ACCEPT_TOKEN(anon_sym_intrinsic);
       END_STATE();
-    case 248:
-      if (lookahead == 'l') ADVANCE(251);
-      END_STATE();
-    case 249:
+    case 246:
       ACCEPT_TOKEN(anon_sym_protected);
       END_STATE();
-    case 250:
+    case 247:
       ACCEPT_TOKEN(anon_sym_contribute);
-      END_STATE();
-    case 251:
-      if (lookahead == 'e') ADVANCE(252);
-      END_STATE();
-    case 252:
-      ACCEPT_TOKEN(anon_sym_noncopyable);
       END_STATE();
     default:
       return false;
@@ -9796,7 +9781,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_DASH] = ACTIONS(1),
     [anon_sym_struct] = ACTIONS(1),
     [anon_sym_intrinsic] = ACTIONS(1),
-    [anon_sym_noncopyable] = ACTIONS(1),
+    [anon_sym_nocopy] = ACTIONS(1),
     [anon_sym_class] = ACTIONS(1),
     [anon_sym_override] = ACTIONS(1),
     [anon_sym_var] = ACTIONS(1),
@@ -9925,7 +9910,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_enum] = ACTIONS(29),
     [anon_sym_struct] = ACTIONS(31),
     [anon_sym_intrinsic] = ACTIONS(33),
-    [anon_sym_noncopyable] = ACTIONS(33),
+    [anon_sym_nocopy] = ACTIONS(33),
     [anon_sym_class] = ACTIONS(31),
     [anon_sym_test] = ACTIONS(35),
     [anon_sym_native] = ACTIONS(37),
@@ -30317,7 +30302,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -30374,7 +30359,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -30435,7 +30420,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_DASH,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -30489,7 +30474,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_DASH,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -36322,7 +36307,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     STATE(330), 16,
       sym_foreign_function_declaration,
       sym_use_declaration,
@@ -36379,7 +36364,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(838), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     STATE(330), 16,
       sym_foreign_function_declaration,
       sym_use_declaration,
@@ -62483,7 +62468,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62514,7 +62499,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62647,7 +62632,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62678,7 +62663,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62709,7 +62694,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62772,7 +62757,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62835,7 +62820,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62866,7 +62851,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62897,7 +62882,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -62928,7 +62913,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63023,7 +63008,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63054,7 +63039,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63085,7 +63070,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63270,7 +63255,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63301,7 +63286,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63332,7 +63317,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63363,7 +63348,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63394,7 +63379,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63425,7 +63410,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63456,7 +63441,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63487,7 +63472,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63518,7 +63503,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63549,7 +63534,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63580,7 +63565,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63611,7 +63596,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63642,7 +63627,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63673,7 +63658,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63736,7 +63721,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63866,7 +63851,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -63936,7 +63921,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64127,7 +64112,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64194,7 +64179,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64225,7 +64210,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64256,7 +64241,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64393,7 +64378,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64523,7 +64508,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64748,7 +64733,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64779,7 +64764,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64810,7 +64795,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64841,7 +64826,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64872,7 +64857,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64903,7 +64888,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64934,7 +64919,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -64997,7 +64982,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65028,7 +65013,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65059,7 +65044,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65090,7 +65075,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65421,7 +65406,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65452,7 +65437,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65483,7 +65468,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65514,7 +65499,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -65609,7 +65594,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -67902,7 +67887,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -67941,7 +67926,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -67980,7 +67965,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68109,7 +68094,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68148,7 +68133,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68187,7 +68172,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68226,7 +68211,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68265,7 +68250,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68304,7 +68289,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68343,7 +68328,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68382,7 +68367,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68421,7 +68406,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68460,7 +68445,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68499,7 +68484,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68538,7 +68523,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68577,7 +68562,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68616,7 +68601,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68655,7 +68640,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68694,7 +68679,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68733,7 +68718,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68804,7 +68789,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68843,7 +68828,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68882,7 +68867,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68921,7 +68906,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68960,7 +68945,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -68999,7 +68984,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -69038,7 +69023,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -69137,7 +69122,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -69176,7 +69161,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -69260,7 +69245,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -69302,7 +69287,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(2070), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(2056), 6,
       anon_sym_public,
       anon_sym_package,
@@ -69338,7 +69323,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -69793,7 +69778,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -69863,7 +69848,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -70154,7 +70139,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -70193,7 +70178,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -70232,7 +70217,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,
@@ -75598,7 +75583,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75622,7 +75607,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75646,7 +75631,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75670,7 +75655,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75736,7 +75721,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75760,7 +75745,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75826,7 +75811,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75850,7 +75835,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75874,7 +75859,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75898,7 +75883,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75922,7 +75907,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75946,7 +75931,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75970,7 +75955,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -75994,7 +75979,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76060,7 +76045,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76084,7 +76069,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76108,7 +76093,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76132,7 +76117,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76156,7 +76141,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76180,7 +76165,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76204,7 +76189,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76228,7 +76213,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76252,7 +76237,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76276,7 +76261,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76300,7 +76285,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76366,7 +76351,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76390,7 +76375,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76456,7 +76441,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76480,7 +76465,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76504,7 +76489,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76528,7 +76513,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76552,7 +76537,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_enum,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_test,
       anon_sym_native,
@@ -76573,7 +76558,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -76596,7 +76581,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -76779,7 +76764,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -76802,7 +76787,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77073,7 +77058,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77144,7 +77129,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77191,7 +77176,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77214,7 +77199,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77301,7 +77286,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77324,7 +77309,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77419,7 +77404,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77466,7 +77451,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77489,7 +77474,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77512,7 +77497,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77729,7 +77714,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_static,
       anon_sym_struct,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
       anon_sym_class,
       anon_sym_override,
       anon_sym_var,
@@ -77756,7 +77741,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     STATE(1413), 6,
       sym_protocol_definition,
       sym_enum_definition,
@@ -77783,7 +77768,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     STATE(1417), 6,
       sym_protocol_definition,
       sym_enum_definition,
@@ -77810,7 +77795,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     STATE(1416), 6,
       sym_protocol_definition,
       sym_enum_definition,
@@ -77883,7 +77868,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     STATE(1388), 6,
       sym_protocol_definition,
       sym_enum_definition,
@@ -78397,7 +78382,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_class,
     ACTIONS(33), 2,
       anon_sym_intrinsic,
-      anon_sym_noncopyable,
+      anon_sym_nocopy,
     ACTIONS(1935), 2,
       anon_sym_let,
       anon_sym_var,

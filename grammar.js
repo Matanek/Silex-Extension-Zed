@@ -246,7 +246,7 @@ module.exports = grammar({
       seq(
         choice(
           seq(optional(field("structure_modifier", "static")), "struct"),
-          seq(optional(field("class_modifier", choice("static", "intrinsic", "noncopyable"))), "class"),
+          seq(optional(field("class_modifier", choice("static", "intrinsic", "nocopy"))), "class"),
         ),
         field("name", $.identifier),
         optional(field("type_parameters", $.type_parameter_list)),

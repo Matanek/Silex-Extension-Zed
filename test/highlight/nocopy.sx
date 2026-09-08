@@ -1,6 +1,6 @@
-public noncopyable class Handle {
-//     ^^^^^^^^^^^ keyword
-//                       ^^^^^^ type.definition
+public nocopy class Handle {
+//     ^^^^^^ keyword
+//                  ^^^^^^ type.definition
 }
 
 struct DType {

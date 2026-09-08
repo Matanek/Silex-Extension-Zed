@@ -1,5 +1,5 @@
 ====================================
-Noncopyable filtering and propagation
+Ownership filtering and propagation
 ====================================
 
 func inspect(state:State, pending:File?, result:Result<File,Error>) {

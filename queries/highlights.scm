@@ -229,7 +229,7 @@
   "override"
   "static"
   "intrinsic"
-  "noncopyable"
+  "nocopy"
   "func"
   "test"
 ] @keyword

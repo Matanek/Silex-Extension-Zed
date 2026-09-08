@@ -3664,7 +3664,7 @@
             "named": false
           },
           {
-            "type": "noncopyable",
+            "type": "nocopy",
             "named": false
           },
           {
@@ -4842,7 +4842,7 @@
     "named": false
   },
   {
-    "type": "noncopyable",
+    "type": "nocopy",
     "named": false
   },
   {
