@@ -1,0 +1,65 @@
+============================================
+Noncopyable classes and typed method spellings
+============================================
+
+public noncopyable class Handle {
+    var value:int
+}
+
+struct DType {
+    static func float32() DType {
+        return DType()
+    }
+}
+
+func main() {
+    var handle = Handle(value:1)
+    let dtype = DType.float32()
+}
+
+---
+
+(source_file
+  (public_declaration
+    (structure_definition
+      (identifier)
+      (structure_field
+        (identifier)
+        (type
+          (builtin_type)))))
+  (structure_definition
+    (identifier)
+    (function_definition
+      (identifier)
+      (parameter_list)
+      (type
+        (named_type
+          (type_identifier)))
+      (block
+        (statement
+          (return_statement
+            (expression
+              (invocation_expression
+                (identifier))))))))
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (invocation_expression
+              (identifier)
+              (field_initializer
+                (identifier)
+                (expression
+                  (integer_literal)))))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (invocation_expression
+              (member_expression
+                (identifier)
+                (identifier)))))))))

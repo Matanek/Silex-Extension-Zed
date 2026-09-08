@@ -246,7 +246,7 @@ module.exports = grammar({
       seq(
         choice(
           seq(optional(field("structure_modifier", "static")), "struct"),
-          seq(optional(field("class_modifier", choice("static", "intrinsic"))), "class"),
+          seq(optional(field("class_modifier", choice("static", "intrinsic", "noncopyable"))), "class"),
         ),
         field("name", $.identifier),
         optional(field("type_parameters", $.type_parameter_list)),
@@ -1423,7 +1423,19 @@ module.exports = grammar({
     null_literal: (_) => "null",
     self_expression: (_) => "self",
     _contextual_member_name: ($) =>
-      choice($.identifier, alias("in", $.identifier), alias("match", $.identifier)),
+      choice(
+        $.identifier,
+        alias("in", $.identifier),
+        alias("match", $.identifier),
+        alias("int", $.identifier), alias("int8", $.identifier),
+        alias("int16", $.identifier), alias("int32", $.identifier),
+        alias("int64", $.identifier), alias("uint", $.identifier),
+        alias("uint8", $.identifier), alias("uint16", $.identifier),
+        alias("uint32", $.identifier), alias("uint64", $.identifier),
+        alias("float", $.identifier), alias("float32", $.identifier),
+        alias("float64", $.identifier), alias("bool", $.identifier),
+        alias("str", $.identifier),
+      ),
     _contextual_variant_name: ($) =>
       choice($.identifier, alias("in", $.identifier)),
     identifier: (_) => /[A-Za-z_][A-Za-z0-9_]*/,

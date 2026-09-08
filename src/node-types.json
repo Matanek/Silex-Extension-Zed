@@ -3664,6 +3664,10 @@
             "named": false
           },
           {
+            "type": "noncopyable",
+            "named": false
+          },
+          {
             "type": "static",
             "named": false
           }
@@ -4835,6 +4839,10 @@
   },
   {
     "type": "mutex",
+    "named": false
+  },
+  {
+    "type": "noncopyable",
     "named": false
   },
   {

@@ -1,0 +1,14 @@
+public noncopyable class Handle {
+//     ^^^^^^^^^^^ keyword
+//                       ^^^^^^ type.definition
+}
+
+struct DType {
+    static func float32() DType { return DType() }
+//              ^^^^^^^ function.definition
+}
+
+func inspect() {
+    let dtype = DType.float32()
+//                   ^^^^^^^ function.method.call
+}
