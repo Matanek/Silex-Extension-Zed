@@ -1,0 +1,108 @@
+======================
+Literal match patterns
+======================
+
+func label(code:int) str {
+    return match code {
+        -1 => "negative"
+        200 => "ok"
+        else => "other"
+    }
+}
+
+func enabled(value:bool) int {
+    return match value {
+        true => 1
+        false => 0
+    }
+}
+
+func command(value:str) int {
+    return match value {
+        "stop" => 1
+        else => 0
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (builtin_type))))
+    (type
+      (builtin_type))
+    (block
+      (statement
+        (return_statement
+          (expression
+            (match_expression
+              (expression
+                (identifier))
+              (match_branch
+                (match_literal_pattern
+                  (integer_literal))
+                (expression
+                  (string_literal)))
+              (match_branch
+                (match_literal_pattern
+                  (integer_literal))
+                (expression
+                  (string_literal)))
+              (match_branch
+                (expression
+                  (string_literal)))))))))
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (builtin_type))))
+    (type
+      (builtin_type))
+    (block
+      (statement
+        (return_statement
+          (expression
+            (match_expression
+              (expression
+                (identifier))
+              (match_branch
+                (match_literal_pattern
+                  (boolean_literal))
+                (expression
+                  (integer_literal)))
+              (match_branch
+                (match_literal_pattern
+                  (boolean_literal))
+                (expression
+                  (integer_literal)))))))))
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (builtin_type))))
+    (type
+      (builtin_type))
+    (block
+      (statement
+        (return_statement
+          (expression
+            (match_expression
+              (expression
+                (identifier))
+              (match_branch
+                (match_literal_pattern
+                  (string_literal))
+                (expression
+                  (integer_literal)))
+              (match_branch
+                (expression
+                  (integer_literal))))))))))

@@ -806,6 +806,7 @@ module.exports = grammar({
             field("variant", $._contextual_variant_name),
             optional(field("bindings", $.match_binding_list)),
           ),
+          field("literal", $.match_literal_pattern),
           field("default", "else"),
         ),
         optional(field("guard", seq("if", $.expression))),
@@ -817,6 +818,14 @@ module.exports = grammar({
             seq($.expression, choice(";", $._automatic_semicolon)),
           ),
         ),
+      ),
+
+    match_literal_pattern: ($) =>
+      choice(
+        $.integer_literal,
+        seq("-", $.integer_literal),
+        $.boolean_literal,
+        $.string_literal,
       ),
 
     match_binding_list: ($) =>
