@@ -325,12 +325,15 @@ module.exports = grammar({
     function_definition: ($) =>
       seq(
         "func",
-        field("name", $._contextual_member_name),
+        field("name", choice($._contextual_member_name, $.operator_function_name)),
         optional(field("type_parameters", $.type_parameter_list)),
         $.parameter_list,
         optional(field("return_type", choice($.void_type, $.borrowed_return_type, $.type))),
         choice(field("body", $.block), choice(";", $._automatic_semicolon)),
       ),
+
+    operator_function_name: (_) =>
+      seq("operator", field("symbol", choice("+", "-", "*", "/"))),
 
     test_definition: ($) =>
       seq(

@@ -1593,6 +1593,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "operator_function_name",
+            "named": true
           }
         ]
       },
@@ -2651,6 +2655,34 @@
           {
             "type": "identifier",
             "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "operator_function_name",
+    "named": true,
+    "fields": {
+      "symbol": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
           }
         ]
       }
@@ -4848,6 +4880,10 @@
   {
     "type": "null_literal",
     "named": true
+  },
+  {
+    "type": "operator",
+    "named": false
   },
   {
     "type": "override",

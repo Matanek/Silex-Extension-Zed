@@ -1,0 +1,13 @@
+public func operator +(left:Vec2, right:Vec2) Vec2 {
+// <- keyword
+//     ^^^^ keyword
+//          ^^^^^^^^ keyword
+//                   ^ operator
+    return left.add(right)
+}
+
+public func operator -(value:Vec2) Vec2 {
+//          ^^^^^^^^ keyword
+//                   ^ operator
+    return value.negated()
+}

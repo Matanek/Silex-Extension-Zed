@@ -1,0 +1,61 @@
+==================
+Operator overload declarations
+==================
+
+public func operator +(left:Vec2, right:Vec2) Vec2 {
+    return left.add(right)
+}
+
+func operator -(value:Vec2) Vec2 {
+    return value.negated()
+}
+
+---
+
+(source_file
+  (public_declaration
+    (function_definition
+      name: (operator_function_name)
+      (parameter_list
+        (parameter
+          name: (identifier)
+          type: (type
+            (named_type
+              (type_identifier))))
+        (parameter
+          name: (identifier)
+          type: (type
+            (named_type
+              (type_identifier)))))
+      return_type: (type
+        (named_type
+          (type_identifier)))
+      body: (block
+        (statement
+          (return_statement
+            value: (expression
+              (invocation_expression
+                target: (member_expression
+                  object: (identifier)
+                  field: (identifier))
+                (expression
+                  (identifier)))))))))
+  (function_definition
+    name: (operator_function_name)
+    (parameter_list
+      (parameter
+        name: (identifier)
+        type: (type
+          (named_type
+            (type_identifier)))))
+    return_type: (type
+      (named_type
+        (type_identifier)))
+    body: (block
+      (statement
+        (return_statement
+              value: (expression
+                (invocation_expression
+                  target: (member_expression
+                    object: (identifier)
+                    field: (identifier)))))))))

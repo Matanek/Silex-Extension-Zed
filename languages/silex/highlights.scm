@@ -84,6 +84,10 @@
 (function_definition
   name: (identifier) @function.definition)
 
+(operator_function_name
+  "operator" @keyword
+  symbol: _ @operator)
+
 (foreign_function_declaration
   name: (identifier) @function.definition
   interop: "C" @type

@@ -1834,8 +1834,17 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "_contextual_member_name"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_contextual_member_name"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "operator_function_name"
+              }
+            ]
           }
         },
         {
@@ -1912,6 +1921,40 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "operator_function_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "operator"
+        },
+        {
+          "type": "FIELD",
+          "name": "symbol",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "+"
+              },
+              {
+                "type": "STRING",
+                "value": "-"
+              },
+              {
+                "type": "STRING",
+                "value": "*"
+              },
+              {
+                "type": "STRING",
+                "value": "/"
+              }
+            ]
+          }
         }
       ]
     },
