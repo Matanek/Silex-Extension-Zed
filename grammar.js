@@ -577,6 +577,7 @@ module.exports = grammar({
             $.assert_statement,
             $.panic_statement,
             $.return_statement,
+            $.yield_statement,
             $.break_statement,
             $.continue_statement,
             $.expression_statement,
@@ -651,6 +652,8 @@ module.exports = grammar({
       ),
 
     return_statement: ($) => seq("return", optional(field("value", $.expression))),
+
+    yield_statement: ($) => seq("yield", field("value", $.expression)),
 
     expression_statement: ($) =>
       choice(
@@ -791,12 +794,33 @@ module.exports = grammar({
       ),
 
     match_expression: ($) =>
+      choice(
+        seq(
+          "match",
+          field("subject", $.expression),
+          "{",
+          repeat1($.match_branch),
+          "}",
+        ),
+        seq(
+          "match",
+          "{",
+          repeat1($.condition_match_branch),
+          "}",
+        ),
+      ),
+
+    condition_match_branch: ($) =>
       seq(
-        "match",
-        field("subject", $.expression),
-        "{",
-        repeat1($.match_branch),
-        "}",
+        choice(field("condition", $.expression), field("default", "else")),
+        "=>",
+        field(
+          "body",
+          choice(
+            seq($.block, optional(choice(";", $._automatic_semicolon))),
+            seq($.expression, choice(";", $._automatic_semicolon)),
+          ),
+        ),
       ),
 
     match_branch: ($) =>

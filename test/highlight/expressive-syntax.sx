@@ -13,3 +13,13 @@ func compile_digits() {
 //      ^^^^ keyword
 //           ^^^^^ variable
 }
+
+func choose(condition:bool) int {
+    return match condition {
+        true => {
+            yield 1
+//          ^^^^^ keyword
+        }
+        else => 0
+    }
+}

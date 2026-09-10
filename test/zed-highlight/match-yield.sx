@@ -1,0 +1,2 @@
+func choose() int { return match true { true => { yield 1 } else => 0 } }
+//                                                ^^^^^ keyword

@@ -1,0 +1,130 @@
+=================================
+Condition match and nested yields
+=================================
+
+func category(score:int) str {
+    return match {
+        score >= 16 => "excellent"
+        score >= 10 => "admitted"
+        else => "insufficient"
+    }
+}
+
+func predicted(condition:bool, x:float) float {
+    return match condition {
+        true => {
+            var result = x * 10.0
+            result /= 2.0
+            yield match result > 5.0 {
+                true => { yield result + 0.5 }
+                else => result
+            }
+        }
+        else => 0.0
+    }
+}
+
+---
+
+(source_file
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (builtin_type))))
+    (type
+      (builtin_type))
+    (block
+      (statement
+        (return_statement
+          (expression
+            (match_expression
+              (condition_match_branch
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (integer_literal))))
+                (expression
+                  (string_literal)))
+              (condition_match_branch
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (integer_literal))))
+                (expression
+                  (string_literal)))
+              (condition_match_branch
+                (expression
+                  (string_literal)))))))))
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (type
+          (builtin_type)))
+      (parameter
+        (identifier)
+        (type
+          (builtin_type))))
+    (type
+      (builtin_type))
+    (block
+      (statement
+        (return_statement
+          (expression
+            (match_expression
+              (expression
+                (identifier))
+              (match_branch
+                (match_literal_pattern
+                  (boolean_literal))
+                (block
+                  (statement
+                    (variable_declaration
+                      (identifier)
+                      (expression
+                        (binary_expression
+                          (expression
+                            (identifier))
+                          (expression
+                            (float_literal))))))
+                  (statement
+                    (assignment_statement
+                      (identifier)
+                      (expression
+                        (float_literal))))
+                  (statement
+                    (yield_statement
+                      (expression
+                        (match_expression
+                          (expression
+                            (binary_expression
+                              (expression
+                                (identifier))
+                              (expression
+                                (float_literal))))
+                          (match_branch
+                            (match_literal_pattern
+                              (boolean_literal))
+                            (block
+                              (statement
+                                (yield_statement
+                                  (expression
+                                    (binary_expression
+                                      (expression
+                                        (identifier))
+                                      (expression
+                                        (float_literal))))))))
+                          (match_branch
+                            (expression
+                              (identifier)))))))))
+              (match_branch
+                (expression
+                  (float_literal))))))))))

@@ -844,6 +844,50 @@
     }
   },
   {
+    "type": "condition_match_branch",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "condition": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "default": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "else",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "conditional_binding",
     "named": true,
     "fields": {
@@ -2212,7 +2256,7 @@
     "fields": {
       "subject": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "expression",
@@ -2225,6 +2269,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "condition_match_branch",
+          "named": true
+        },
         {
           "type": "match_branch",
           "named": true
@@ -3673,6 +3721,10 @@
         {
           "type": "while_statement",
           "named": true
+        },
+        {
+          "type": "yield_statement",
+          "named": true
         }
       ]
     }
@@ -4565,6 +4617,22 @@
     }
   },
   {
+    "type": "yield_statement",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "!",
     "named": false
   },
@@ -5020,6 +5088,10 @@
   },
   {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "yield",
     "named": false
   },
   {

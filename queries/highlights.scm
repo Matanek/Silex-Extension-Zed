@@ -217,6 +217,7 @@
   "range"
   "in"
   "return"
+  "yield"
   "try"
   "copy"
   "move"
