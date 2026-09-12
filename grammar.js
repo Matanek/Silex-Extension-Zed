@@ -1463,6 +1463,7 @@ module.exports = grammar({
         $.identifier,
         alias("in", $.identifier),
         alias("match", $.identifier),
+        alias("move", $.identifier),
         alias("int", $.identifier), alias("int8", $.identifier),
         alias("int16", $.identifier), alias("int32", $.identifier),
         alias("int64", $.identifier), alias("uint", $.identifier),

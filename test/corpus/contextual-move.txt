@@ -1,0 +1,72 @@
+============================
+Contextual move method and ownership transfer
+============================
+
+class Actor {
+    func move(amount:int) int { return amount }
+}
+func main() {
+    var actor = Actor()..move(1)
+    actor.move(2)
+    actor?.move(3)
+    let transferred = move actor
+}
+
+---
+
+(source_file
+  (structure_definition
+    (identifier)
+    (function_definition
+      (identifier)
+      (parameter_list
+        (parameter
+          (identifier)
+          (type
+            (builtin_type))))
+      (type
+        (builtin_type))
+      (block
+        (statement
+          (return_statement
+            (expression
+              (identifier)))))))
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (cascade_expression
+              (invocation_expression
+                (identifier))
+              (cascade_operation
+                (cascade_method_call
+                  (identifier)
+                  (expression
+                    (integer_literal))))))))
+      (statement
+        (expression_statement
+          (invocation_expression
+            (member_expression
+              (identifier)
+              (identifier))
+            (expression
+              (integer_literal)))))
+      (statement
+        (expression_statement
+          (invocation_expression
+            (safe_member_expression
+              (identifier)
+              (identifier))
+            (expression
+              (integer_literal)))))
+      (statement
+        (variable_declaration
+          (identifier)
+          (expression
+            (move_expression
+              (expression
+                (identifier)))))))))

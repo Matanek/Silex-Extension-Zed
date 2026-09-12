@@ -7833,6 +7833,15 @@
           "type": "ALIAS",
           "content": {
             "type": "STRING",
+            "value": "move"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
             "value": "int"
           },
           "named": true,
