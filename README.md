@@ -9,17 +9,24 @@ the main [Silex repository](https://github.com/Matanek/Silex).
 
 ## Install the extension
 
-The extension is awaiting inclusion in the Zed extension gallery through
-[zed-industries/extensions#7190](https://github.com/zed-industries/extensions/pull/7190).
-Until it appears in Zed's Extensions view, install it as a development
-extension from this repository.
-
 First, [install Silex](https://github.com/Matanek/Silex-Documentation/blob/main/EN/Tools/Installation.md)
 and check that Zed can find its command:
 
 ```sh
 silex --version
 ```
+
+Open Zed's Extensions view, search for `Silex`, and click **Install**.
+Open an `.sx` file to start `silex lsp` automatically. If Silex was added to
+`PATH` while Zed was open, restart Zed first. Git and Rust are not needed for
+this installation.
+
+See the [installation guide](https://github.com/Matanek/Silex-Documentation/blob/main/EN/Tools/Install-Zed-extension.md)
+for both installation methods and troubleshooting.
+
+### Install a development version
+
+Use this method to test repository changes that are not yet in the gallery.
 
 Install Git and Rust with `rustup`, then add the WebAssembly target used by Zed
 extensions:
@@ -41,8 +48,13 @@ To update this development installation, pull the repository and run
 git -C Silex-Extension-Zed pull --ff-only
 ```
 
-After the catalog pull request is merged and the extension becomes available,
-open Zed's Extensions view, search for `Silex`, and install it there instead.
+A development extension overrides the gallery version. To switch back,
+uninstall the development extension, then install `Silex` from the Extensions
+view.
+
+## Release notes
+
+See [CHANGELOG.md](CHANGELOG.md) or the [French release notes](CHANGELOG.fr.md).
 
 ## Development requirements
 
