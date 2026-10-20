@@ -174,7 +174,7 @@ module.exports = grammar({
         field("name", $.identifier),
         $.parameter_list,
         optional(field("return_type", choice($.void_type, $.borrowed_return_type, $.type))),
-        choice(";", $._automatic_semicolon),
+        choice(field("body", $.block), ";", $._automatic_semicolon),
       ),
 
     protocol_property_requirement: ($) =>
