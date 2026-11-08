@@ -3,7 +3,7 @@
 Ces notes couvrent les changements de l'extension Zed depuis la version 0.52.0.
 Les versions antérieures restent consultables dans l'historique Git.
 
-## [Unreleased]
+## [0.54.0] - 2026-11-08
 
 - Reconnaissance et coloration des corps de méthodes par défaut dans les protocoles.
 

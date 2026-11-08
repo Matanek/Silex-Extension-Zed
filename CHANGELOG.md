@@ -3,7 +3,7 @@
 These notes cover Zed extension changes since version 0.52.0. Earlier versions
 remain available in Git history.
 
-## [Unreleased]
+## [0.54.0] - 2026-11-08
 
 - Parse and highlight default method bodies in protocols.
 
